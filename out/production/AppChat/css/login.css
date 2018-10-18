@@ -3,11 +3,10 @@
     -fx-hgap: 10;
     -fx-vgap: 10;
 }
-
 #title {
-    -fx-font-size: 30px;
+    -fx-font-size: 50px;
 }
 
-.genderChoice {
-    -fx-spacing: 5px;
+.buttons {
+    -fx-spacing: 10px;
 }
