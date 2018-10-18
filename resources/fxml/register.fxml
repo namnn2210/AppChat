@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          stylesheets="/css/register.css"
+          fx:controller="appchat.app.controllers.RegisterController">
+    <children>
+
+        <Text text="Create new account"
+              fx:id="title"
+              GridPane.rowIndex="0"
+              GridPane.columnSpan="2"
+        />
+
+        <StackPane GridPane.rowIndex="1"
+                   GridPane.columnIndex="0">
+            <children>
+                <VBox>
+                    <Label text="Username" fx:id="usernameLabel"/>
+                    <TextField fx:id="usernameField"/>
+                </VBox>
+            </children>
+        </StackPane>
+
+        <Label text="Email Address"
+               fx:id="emailLabel"
+               GridPane.rowIndex="3"
+               GridPane.columnIndex="0"
+        />
+
+        <TextField fx:id="emailField"
+                   GridPane.rowIndex="4"
+                   GridPane.columnIndex="0"
+        />
+
+        <Label text="Password"
+               fx:id="passwordLabel"
+               GridPane.rowIndex="5"
+               GridPane.columnIndex="0"
+        />
+
+        <PasswordField fx:id="passwordField"
+                       GridPane.rowIndex="6"
+                       GridPane.columnIndex="0"
+        />
+
+        <Label text="Confirm Password"
+               fx:id="confirmPasswordLabel"
+               GridPane.rowIndex="7"
+               GridPane.columnIndex="0"
+        />
+
+        <PasswordField fx:id="confirmPasswordField"
+                       GridPane.rowIndex="8"
+                       GridPane.columnIndex="0"
+        />
+
+        <Label text="Full Name"
+               fx:id="fullNameLabel"
+               GridPane.rowIndex="9"
+               GridPane.columnIndex="0"
+        />
+
+        <TextField fx:id="fullNameField"
+                   GridPane.rowIndex="10"
+                   GridPane.columnIndex="0"
+        />
+
+
+
+        <VBox styleClass="gender" GridPane.rowIndex="11" GridPane.columnIndex="0">
+            <children>
+                <RadioButton text="Male"/>
+                <RadioButton text="Female"/>
+            </children>
+        </VBox>
+
+        <Label text="Phone Number"
+               fx:id="phoneLabel"
+               GridPane.rowIndex="12"
+               GridPane.columnIndex="0"
+        />
+
+        <TextField fx:id="phoneField"
+                   GridPane.rowIndex="13"
+                   GridPane.columnIndex="0"
+        />
+
+        <Label text="Birthday"
+               fx:id="dobLabel"
+               GridPane.rowIndex="14"
+               GridPane.columnIndex="0"
+        />
+
+        <DatePicker GridPane.rowIndex="15"
+                    GridPane.columnIndex="0"/>
+
+        <HBox styleClass="buttons" GridPane.rowIndex="7" GridPane.columnIndex="0">
+            <Button fx:id="register" text="Submit" onAction="#register"/>
+        </HBox>
+    </children>
+</GridPane>

@@ -1,0 +1,13 @@
+.root {
+    -fx-alignment: center;
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+#title {
+    -fx-font-size: 30px;
+}
+
+.gender {
+    -fx-spacing: 5px;
+}
