@@ -1,13 +1,23 @@
 package appchat.app.utility;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.SecretKeySpec;
 import java.security.AlgorithmConstraints;
+import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.Random;
 
 public class Hash {
     private static Random random = new Random();
+    private static Cipher cipher;
+    private static String secretkey = "javaappchatkey00";
 
+    // SHA-1 mã hóa mật khẩu
     public static String randomString(int length){
         String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         String string = new String();
@@ -38,7 +48,31 @@ public class Hash {
         return generatedPassword;
     }
 
-//    public static void main(String[] args) {
-//        System.out.println(generateSaltedSHA1("mocchua97","TF5D09ZK"));
-//    }
+    // AES256 mã hóa bảo mật thông tin
+    // mã hóa
+    public static byte[] getEncryptionAES256(String message) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+        SecretKeySpec skeySpec = new SecretKeySpec(secretkey.getBytes(), "AES");
+        cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+        cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
+        byte[] byteEncrypted = cipher.doFinal(message.getBytes());
+        String encrypted =  Base64.getEncoder().encodeToString(byteEncrypted);
+        System.out.println(encrypted);
+        return byteEncrypted;
+    }
+
+    //giải mã
+    public static String getDecryptionAES256(byte[] byteencrypted) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException{
+        SecretKeySpec skeySpec = new SecretKeySpec(secretkey.getBytes(), "AES");
+        cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+        cipher.init(Cipher.DECRYPT_MODE, skeySpec);
+        byte[] byteDecrypted = cipher.doFinal(byteencrypted);
+        String decrypted = new String(byteDecrypted);
+        return decrypted;
+    }
+
+    public static void main(String[] args) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException{
+        String message = "Hello";
+        getEncryptionAES256(message);
+        System.out.println(getDecryptionAES256(getEncryptionAES256(message)));
+    }
 }
