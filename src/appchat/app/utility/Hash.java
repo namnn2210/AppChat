@@ -71,8 +71,9 @@ public class Hash {
     }
 
     public static void main(String[] args) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException{
-        String message = "Hello";
-        getEncryptionAES256(message);
-        System.out.println(getDecryptionAES256(getEncryptionAES256(message)));
+//        String message = "Hello";
+//        getEncryptionAES256(message);
+//        System.out.println(getDecryptionAES256(getEncryptionAES256(message)));
+        System.out.println(generateSaltedSHA1("","USF91LCD"));
     }
 }

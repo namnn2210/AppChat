@@ -40,6 +40,7 @@ public class LoginController {
             root = FXMLLoader.load(getClass().getResource("/fxml/register.fxml"));
         }
         stage.setScene(new Scene(root,400,700));
+        stage.setResizable(false);
         stage.show();
     }
 }

@@ -1,8 +1,8 @@
 package appchat.app.controllers;
 
 import appchat.app.entity.User;
-import appchat.app.model.DBConnection;
 import appchat.app.model.UserModel;
+import appchat.app.utility.Hash;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -10,14 +10,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.Map;
 
 
 public class RegisterController {
@@ -46,11 +39,12 @@ public class RegisterController {
     private DatePicker date;
 
     private User user = null;
+    private HashMap<String, String> errors = null;
 
     public void register(ActionEvent actionEvent) {
         String username = userNameField.getText();
         String password = passwordField.getText();
-        String confirmPassword = confirmPasswordField.getText();
+        String salt = Hash.randomString(7);
         String fullName = fullNameField.getText();
         String birthDate = ((TextField) date.getEditor()).getText();
         int gender;
@@ -64,12 +58,107 @@ public class RegisterController {
         String address = addressField.getText();
         String email = emailField.getText();
         String phone = phoneField.getText();
-        user = new User(username, password, confirmPassword, fullName, birthDate, gender, address, email, phone);
-        if (userModel.insert(user)) {
-            signUpSuccessfulAlert();
-        } else {
 
+        user = new User(username, Hash.generateSaltedSHA1(password, salt), salt, fullName, birthDate, gender, address, email, phone);
+        errors = isValid();
+        if (errors.size() == 0) {
+            if (passwordField.getText().equals(confirmPasswordField.getText())) {
+                if (userModel.checkExistEmail(user.getEmail())) {
+                    if(userModel.checkExistUser(user.getUserName())) {
+                        if (userModel.insert(user)) {
+                            signUpSuccessfulAlert();
+                        }
+                        else {
+                            signUpFailedAlert();
+                        }
+                    }
+                    else {
+                        checkExistUserAlert();
+                    }
+                }
+                else {
+                    checkExistEmailAlert();
+                }
+            }
+            else {
+                checkPasswordAlert();
+            }
+        } else {
+            errorsAlert();
         }
+    }
+
+    public HashMap<String, String> isValid() {
+        HashMap<String, String> errors = new HashMap<>();
+        if (userNameField.getText().length() == 0 || userNameField.getText() == null) {
+            errors.put("username", "Username can't be null or empty");
+        } else if ((userNameField.getText().length() < 5)) {
+            errors.put("username", "Username is too short");
+        } else if (passwordField.getText().length() == 0 || passwordField.getText() == null) {
+            errors.put("password", "Password can't be null or empty");
+        } else if (passwordField.getText().length() < 8) {
+            errors.put("password", "Password must be more than 8 characters");
+        }  else if (fullNameField.getText().length() == 0 || fullNameField.getText() == null) {
+            errors.put("fullName", "Your name can't be null or empty");
+        } else if (date.getEditor().getText().length() == 0 || date.getEditor().getText().equals("")) {
+            errors.put("date", "Please choose your date of birth");
+        } else if (addressField.getText().length() == 0 || addressField.getText() == null) {
+            errors.put("address", "Address can't be null or empty");
+        } else if (phoneField.getText().length() == 0 || phoneField.getText() == null) {
+            errors.put("phone", "Phone can't be null or empty");
+        } else if (emailField.getText().matches("\t^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")) {
+            errors.put("email", "Email is not in correct format");
+        } else if (emailField.getText().length() == 0 || emailField.getText() == null) {
+            errors.put("email", "Email can't be null or empty");
+        } else if (!(male.isSelected() || female.isSelected())) {
+            errors.put("gender", "Please choose your gender");
+        }
+        return errors;
+    }
+
+
+    private void signUpFailedAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Signup Failed");
+        alert.setHeaderText(null);
+        alert.setContentText("Failed");
+
+        alert.showAndWait();
+    }
+
+    private void errorsAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Signup Failed");
+        alert.setHeaderText(null);
+        alert.setContentText("Please fix following errors and try again");
+        for (String message : errors.values()) {
+            alert.setContentText(message);
+        }
+        alert.showAndWait();
+    }
+
+    private void checkExistUserAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Username existed");
+        alert.setHeaderText(null);
+        alert.setContentText("Username is existed. Please try another username");
+        alert.showAndWait();
+    }
+
+    private void checkExistEmailAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Email existed");
+        alert.setHeaderText(null);
+        alert.setContentText("Email is existed. Please try another email");
+        alert.showAndWait();
+    }
+
+    private void checkPasswordAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Password");
+        alert.setHeaderText(null);
+        alert.setContentText("Password does not match");
+        alert.showAndWait();
     }
 
     private void signUpSuccessfulAlert() {
