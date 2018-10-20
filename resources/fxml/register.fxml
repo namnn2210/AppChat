@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Text?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Button?>
+
+<?import javafx.scene.control.ToggleGroup?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           stylesheets="/css/register.css"
@@ -22,7 +30,7 @@
             <children>
                 <VBox>
                     <Label text="Username" fx:id="usernameLabel"/>
-                    <TextField fx:id="usernameField"/>
+                    <TextField fx:id="userNameField" promptText="Username"/>
                 </VBox>
             </children>
         </StackPane>
@@ -34,7 +42,7 @@
             <children>
                 <VBox>
                     <Label text="Email Address" fx:id="emailLabel"/>
-                    <TextField fx:id="emailField"/>
+                    <TextField fx:id="emailField" promptText="Email Address"/>
                 </VBox>
             </children>
         </StackPane>
@@ -45,7 +53,7 @@
             <children>
                 <VBox>
                     <Label text="Password" fx:id="passwordLabel"/>
-                    <PasswordField fx:id="passwordField"/>
+                    <PasswordField fx:id="passwordField" promptText="Password"/>
                 </VBox>
             </children>
         </StackPane>
@@ -56,7 +64,7 @@
             <children>
                 <VBox>
                     <Label text="Confirm Password" fx:id="confirmPasswordLabel"/>
-                    <PasswordField fx:id="confirmPasswordField"/>
+                    <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password"/>
                 </VBox>
             </children>
         </StackPane>
@@ -67,7 +75,7 @@
             <children>
                 <VBox>
                     <Label text="Full Name" fx:id="fullNameLabel"/>
-                    <TextField fx:id="fullNameField"/>
+                    <TextField fx:id="fullNameField" promptText="Full Name"/>
                 </VBox>
             </children>
         </StackPane>
@@ -78,34 +86,49 @@
                     <Label text="Gender" fx:id="genderLabel"/>
                     <VBox styleClass="genderChoice">
                         <children>
-                            <RadioButton text="Male"/>
-                            <RadioButton text="Female"/>
+                            <fx:define>
+                                <ToggleGroup fx:id="myGender"/>
+                            </fx:define>
+                            <RadioButton fx:id="male" text="Male" toggleGroup="$myGender"/>
+                            <RadioButton fx:id="female" text="Female" toggleGroup="$myGender"/>
                         </children>
                     </VBox>
                 </VBox>
             </children>
         </StackPane>
 
-        <StackPane styleClass="phone" GridPane.rowIndex="7" GridPane.columnIndex="0">
+        <StackPane styleClass="address"
+                   GridPane.rowIndex="7"
+                   GridPane.columnIndex="0">
+            <children>
+                <VBox>
+                    <Label text="Address" fx:id="addressLabel"/>
+                    <TextField fx:id="addressField" promptText="Address"/>
+                </VBox>
+            </children>
+        </StackPane>
+
+        <StackPane styleClass="phone" GridPane.rowIndex="8" GridPane.columnIndex="0">
             <children>
                 <VBox>
                     <Label text="Phone Number" fx:id="phoneLabel"/>
-                    <TextField fx:id="phoneField"/>
+                    <TextField fx:id="phoneField" promptText="Phone"/>
                 </VBox>
             </children>
         </StackPane>
 
-        <StackPane styleClass="dob" GridPane.rowIndex="8" GridPane.columnIndex="0">
+        <StackPane styleClass="dob" GridPane.rowIndex="9" GridPane.columnIndex="0">
             <children>
                 <VBox>
                     <Label text="Birthday" fx:id="dobLabel"/>
-                    <DatePicker/>
+                    <DatePicker fx:id="date" promptText="Birthday"/>
                 </VBox>
             </children>
         </StackPane>
 
-        <HBox styleClass="buttons" GridPane.rowIndex="9" GridPane.columnIndex="0">
+        <HBox styleClass="buttons" GridPane.rowIndex="10" GridPane.columnIndex="0">
             <Button fx:id="register" text="Submit" onAction="#register"/>
         </HBox>
+
     </children>
 </GridPane>
