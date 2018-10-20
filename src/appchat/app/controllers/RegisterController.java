@@ -5,17 +5,22 @@ import appchat.app.model.UserModel;
 import appchat.app.utility.Hash;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 
 public class RegisterController {
 
     private UserModel userModel = new UserModel();
+
+    Stage stage;
+    Parent root;
 
     @FXML
     private TextField userNameField;
@@ -37,6 +42,8 @@ public class RegisterController {
     private TextField addressField;
     @FXML
     private DatePicker date;
+    @FXML
+    private Button register;
 
     private User user = null;
     private HashMap<String, String> errors = null;
@@ -85,6 +92,18 @@ public class RegisterController {
             }
         } else {
             errorsAlert();
+        }
+
+        try {
+            if (actionEvent.getSource() == register) {
+                stage = (Stage) register.getScene().getWindow();
+                root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+            }
+            stage.setScene(new Scene(root, 400, 550));
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException ex){
+            ex.printStackTrace();
         }
     }
 
