@@ -20,6 +20,7 @@ public class LoginController {
     private Button register;
 
     public void login(ActionEvent actionEvent) {
+
     }
 
     public void testConnection(ActionEvent actionEvent) {

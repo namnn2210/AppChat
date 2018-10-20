@@ -25,7 +25,7 @@
             <children>
                 <VBox>
                     <Label text="Username" fx:id="usernameLabel"/>
-                    <TextField fx:id="usernameField"/>
+                    <TextField fx:id="usernameField" promptText="Username"/>
                 </VBox>
             </children>
         </StackPane>
@@ -34,7 +34,7 @@
             <children>
                 <VBox>
                     <Label text="Password" fx:id="passwordLabel"/>
-                    <PasswordField fx:id="passwordField"/>
+                    <PasswordField fx:id="passwordField" promptText="Password"/>
                 </VBox>
             </children>
         </StackPane>
