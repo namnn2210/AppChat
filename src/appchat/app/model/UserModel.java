@@ -10,6 +10,7 @@ import java.util.HashMap;
 public class UserModel {
 
     private HashMap<String, String> errors = null;
+    private User user = null;
 
     public boolean insert(User user) {
         try {
@@ -31,6 +32,32 @@ public class UserModel {
             return false;
         }
         return true;
+    }
+
+    public User select(String _username) {
+        try {
+            Statement statement = DBConnection.getInstance().getConnection().createStatement();
+            String sql = "SELECT * FROM users WHERE username='" + _username + "'";
+            ResultSet rs = statement.executeQuery(sql);
+            if(rs.next()) {
+                int id = rs.getInt("id");
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                String salt = rs.getString("salt");
+                String fullName = rs.getString("fullname");
+                String birthDate = rs.getString("birthdate");
+                int gender = rs.getInt("gender");
+                String address = rs.getString("address");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                int status = rs.getInt("status");
+                user = new User(id,username,password,salt,fullName,birthDate,gender,address,email,phone,status);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return user;
     }
 
 

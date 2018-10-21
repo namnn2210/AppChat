@@ -1,15 +1,21 @@
 package appchat.app.controllers;
 
+import appchat.app.entity.User;
 import appchat.app.model.DBConnection;
+import appchat.app.model.UserModel;
+import appchat.app.utility.Hash;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.sql.Connection;
+import java.util.HashMap;
 
 public class LoginController {
 
@@ -19,27 +25,98 @@ public class LoginController {
     @FXML
     private Button register;
 
+    @FXML
+    private TextField usernameField;
+
+    @FXML
+    private TextField passwordField;
+
+    private UserModel userModel = new UserModel();
+    private User user = null;
+    private HashMap<String, String> errors = null;
+
     public void login(ActionEvent actionEvent) {
-
-    }
-
-    public void testConnection(ActionEvent actionEvent) {
-        Connection connection = DBConnection.getInstance().getConnection();
-        if (connection != null) {
-            System.out.println("Connected!");
-        } else {
-            System.out.println("Connect failed!");
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        user = new User(username, password);
+        errors = checkLogin();
+        if (errors.size() > 0 ) {
+            checkLoginAlert();
+        }
+        else {
+            user = userModel.select(username);
+            if (user == null) {
+                usernameAlert();
+            }
+            else {
+                if (!(user.getPassWord().equals(Hash.generateSaltedSHA1(password,user.getSalt())))) {
+                    passwordAlert();
+                }
+                else {
+                    loginAlert();
+                }
+            }
         }
     }
 
-    @FXML
+    public HashMap<String, String> checkLogin() {
+        errors = new HashMap<>();
+        if (usernameField.getText().length() == 0 || usernameField.getText() == null) {
+            errors.put("username", "Username can't be null or empty");
+        } else if ((usernameField.getText().length() < 5)) {
+            errors.put("username", "Username is too short");
+        } else if (passwordField.getText().length() == 0 || passwordField.getText() == null) {
+            errors.put("password", "Password can't be null or empty");
+        } else if (passwordField.getText().length() < 8) {
+            errors.put("password", "Password must be more than 8 characters");
+
+        }
+        return errors;
+    }
+
+    private void checkLoginAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Login Failed");
+        alert.setHeaderText(null);
+        alert.setContentText("Please fix following errors and try again");
+        for (String message : errors.values()) {
+            alert.setContentText(message);
+        }
+        alert.showAndWait();
+    }
+
+    private void loginAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Logging in");
+        alert.setHeaderText("Results:");
+        alert.setContentText("Login successful !");
+
+        alert.showAndWait();
+    }
+
+    private void usernameAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Login Failed");
+        alert.setHeaderText(null);
+        alert.setContentText("Username doesn't exist");
+        alert.showAndWait();
+    }
+
+    private void passwordAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Login Failed");
+        alert.setHeaderText(null);
+        alert.setContentText("Password is incorrect");
+        alert.showAndWait();
+    }
+
     public void handleRegisterAction(ActionEvent actionEvent) throws Exception {
 
         if (actionEvent.getSource() == register) {
             stage = (Stage) register.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("/fxml/register.fxml"));
         }
-        stage.setScene(new Scene(root,400,700));
+        stage.setScene(new Scene(root, 400, 700));
         stage.setResizable(false);
         stage.show();
     }
