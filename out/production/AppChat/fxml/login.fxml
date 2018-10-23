@@ -17,8 +17,14 @@
             <Font size="19.0" />
          </font>
       </Label>
-      <Label layoutX="96.0" layoutY="467.0" text="Don't you have an account ?" />
-      <Hyperlink fx:id="register" layoutX="244.0" layoutY="464.0" onAction="#handleRegisterAction" styleClass="registerBtn" stylesheets="@../css/login.css" text="Click here to register" />
+      <Label layoutX="96.0" layoutY="467.0" text="Don't you have an account ?">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Hyperlink fx:id="register" layoutX="271.0" layoutY="463.0" onAction="#handleRegisterAction" styleClass="registerBtn" stylesheets="@../css/login.css" text="Click here to register">
+         <font>
+            <Font size="14.0" />
+         </font></Hyperlink>
       <VBox layoutX="96.0" layoutY="270.0" prefHeight="115.0" prefWidth="250.0">
          <children>
             <Label text="Username">
