@@ -5,6 +5,7 @@ import javafx.scene.control.Alert;
 
 import javax.swing.plaf.nimbus.State;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class UserModel {
@@ -87,5 +88,23 @@ public class UserModel {
             ex.printStackTrace();
         }
         return true;
+    }
+
+    public ArrayList<String> getListUser(ArrayList<Integer> listIdFriend){
+        ArrayList<String> listUser = new ArrayList<>();
+        try {
+            for (int id : listIdFriend) {
+                Statement statement = DBConnection.getInstance().getConnection().createStatement();
+                String sql = "SELECT * FROM users WHERE id='" + id + "'";
+                ResultSet rs = statement.executeQuery(sql);
+                if (rs.next()) {
+                    String username = rs.getString("username");
+                    listUser.add(username);
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listUser;
     }
 }

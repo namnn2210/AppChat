@@ -24,6 +24,12 @@ public class User {
         this.passWord = passWord;
     }
 
+    public User(int id, String userName, String passWord) {
+        this.id = id;
+        this.userName = userName;
+        this.passWord = passWord;
+    }
+
     public User(String userName, String passWord, String salt, String fullName, String birthDate, int gender, String address, String email, String phone) {
         this.userName = userName;
         this.passWord = passWord;
