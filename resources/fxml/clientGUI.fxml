@@ -7,21 +7,21 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:controller="appchat.app.controllers.ClientGUIController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" stylesheets="/css/clientGUI.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" stylesheets="/css/clientGUI.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appchat.app.controllers.ClientGUIController">
    <children>
       <Pane fx:id="userInfo" prefHeight="120.0" prefWidth="250.0" style="-fx-background-color: blue;" styleClass="userInfo">
          <children>
-            <ImageView fitHeight="57.0" fitWidth="57.0" layoutX="14.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView onMouseClicked="#handleAccountInfo" fx:id="accountInfo" fitHeight="57.0" fitWidth="57.0" layoutX="14.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@/img/circled-user-male-skin-type-1-2.png" />
                </image>
             </ImageView>
-            <Label layoutX="77.0" layoutY="51.0" prefHeight="17.0" prefWidth="96.0" style="-fx-text-fill: white" text="Username">
+            <Label fx:id="username" layoutX="77.0" layoutY="51.0" prefHeight="17.0" prefWidth="96.0" style="-fx-text-fill: white" text="${controller.username}">
                <font>
                   <Font size="20.0" />
                </font></Label>
             <Circle fill="#86ff1f" layoutX="77.0" layoutY="95.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label layoutX="87.0" layoutY="81.0" prefHeight="17.0" prefWidth="86.0" style="-fx-text-fill: white" text="Status">
+            <Label layoutX="87.0" layoutY="81.0" prefHeight="17.0" prefWidth="86.0" style="-fx-text-fill: white" text="Online">
                <font>
                   <Font size="18.0" />
                </font></Label>

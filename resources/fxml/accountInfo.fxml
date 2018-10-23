@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" stylesheets="/css/accountInfo.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appchat.app.controllers.AccountInfoController">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="83.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="/img/circled-user-male-skin-type-1-2.png" />
+         </image>
+      </ImageView>
+      <GridPane layoutX="83.0" layoutY="253.0" prefHeight="350.0" prefWidth="459.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Username">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="${controller.username}" GridPane.columnIndex="1">
+               <font>
+                  <Font size="17.0" />
+               </font></Text>
+            <Label text="Password" GridPane.rowIndex="1">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="${controller.password}" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="17.0" />
+               </font></Text>
+            <Label text="Full Name" GridPane.rowIndex="2">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="${controller.fullName}" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="17.0" />
+               </font></Text>
+            <Label text="Email" GridPane.rowIndex="3">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="${controller.email}" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font size="17.0" />
+               </font></Text>
+            <Label text="Date of Birth" GridPane.rowIndex="4">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="${controller.dob}" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font size="17.0" />
+               </font></Text>
+            <Label text="Phone Number" GridPane.rowIndex="5">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="${controller.phone}" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font size="17.0" />
+               </font></Text>
+            <Label text="Gender" GridPane.rowIndex="6">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="${controller.gender}" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+         </children>
+      </GridPane>
+      <ImageView fx:id="backToChat" onMouseClicked="#backToChat" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="/img/back-icon.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
