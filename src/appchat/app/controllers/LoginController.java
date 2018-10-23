@@ -17,8 +17,8 @@ import java.util.HashMap;
 
 public class LoginController {
 
-    Stage stage;
-    Parent root;
+    private Stage stage;
+    private Parent root;
 
     @FXML
     private Hyperlink register;
@@ -33,7 +33,6 @@ public class LoginController {
     private User user = null;
     private HashMap<String, String> errors = null;
 
-    private User currentLoginUser = null;
 
     public void login(ActionEvent actionEvent) throws Exception {
         String username = usernameField.getText();
@@ -54,15 +53,12 @@ public class LoginController {
                 }
                 else {
                     loginAlert();
-                    currentLoginUser = user;
+                    ClientGUIController.currentUserLogin = user;
+                    AccountInfoController.currentUserLogin = user;
                     showClientGUI();
                 }
             }
         }
-    }
-
-    public User getCurrentLoginUserToGUI() {
-        return currentLoginUser;
     }
 
     public HashMap<String, String> checkLogin() {
