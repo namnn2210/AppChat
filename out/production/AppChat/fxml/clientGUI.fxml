@@ -7,18 +7,24 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane stylesheets="/css/clientGUI.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="appchat.app.controllers.ClientGUIController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" stylesheets="/css/clientGUI.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane fx:id="userInfo" styleClass="userInfo" prefHeight="120.0" prefWidth="250.0" style="-fx-background-color: blue;">
+      <Pane fx:id="userInfo" prefHeight="120.0" prefWidth="250.0" style="-fx-background-color: blue;" styleClass="userInfo">
          <children>
             <ImageView fitHeight="57.0" fitWidth="57.0" layoutX="14.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@/img/circled-user-male-skin-type-1-2.png" />
                </image>
             </ImageView>
-            <Label style="-fx-text-fill: white" layoutX="79.0" layoutY="63.0" prefHeight="17.0" prefWidth="96.0" text="Username" />
-            <Circle fill="#86ff1f" layoutX="79.0" layoutY="99.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label style="-fx-text-fill: white" layoutX="89.0" layoutY="91.0" prefHeight="17.0" prefWidth="86.0" text="Status" />
+            <Label layoutX="77.0" layoutY="51.0" prefHeight="17.0" prefWidth="96.0" style="-fx-text-fill: white" text="${controller.mUsername}">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <Circle fill="#86ff1f" layoutX="77.0" layoutY="95.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label layoutX="87.0" layoutY="81.0" prefHeight="17.0" prefWidth="86.0" style="-fx-text-fill: white" text="Status">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
          </children>
       </Pane>
       <Pane layoutX="250.0" layoutY="1.0" prefHeight="800.0" prefWidth="750.0">

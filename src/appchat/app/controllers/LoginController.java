@@ -33,6 +33,8 @@ public class LoginController {
     private User user = null;
     private HashMap<String, String> errors = null;
 
+    private User currentLoginUser = null;
+
     public void login(ActionEvent actionEvent) throws Exception {
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -52,10 +54,15 @@ public class LoginController {
                 }
                 else {
                     loginAlert();
+                    currentLoginUser = user;
                     showClientGUI();
                 }
             }
         }
+    }
+
+    public User getCurrentLoginUserToGUI() {
+        return currentLoginUser;
     }
 
     public HashMap<String, String> checkLogin() {
