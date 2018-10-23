@@ -44,6 +44,8 @@ public class RegisterController {
     private DatePicker date;
     @FXML
     private Button register;
+    @FXML
+    private Hyperlink login;
 
     private User user = null;
     private HashMap<String, String> errors = null;
@@ -74,6 +76,17 @@ public class RegisterController {
                     if(userModel.checkExistUser(user.getUserName())) {
                         if (userModel.insert(user)) {
                             signUpSuccessfulAlert();
+                            try {
+                                if (actionEvent.getSource() == register) {
+                                    stage = (Stage) register.getScene().getWindow();
+                                    root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+                                }
+                                stage.setScene(new Scene(root, 550, 700));
+                                stage.setResizable(false);
+                                stage.show();
+                            } catch (IOException ex){
+                                ex.printStackTrace();
+                            }
                         }
                         else {
                             signUpFailedAlert();
@@ -94,17 +107,7 @@ public class RegisterController {
             errorsAlert();
         }
 
-        try {
-            if (actionEvent.getSource() == register) {
-                stage = (Stage) register.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
-            }
-            stage.setScene(new Scene(root, 400, 550));
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException ex){
-            ex.printStackTrace();
-        }
+
     }
 
     public HashMap<String, String> isValid() {
@@ -191,4 +194,13 @@ public class RegisterController {
     }
 
 
+    public void handleLoginAction(ActionEvent actionEvent) throws Exception {
+        if (actionEvent.getSource() == login) {
+            stage = (Stage) register.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+        }
+        stage.setScene(new Scene(root, 550, 700));
+        stage.setResizable(false);
+        stage.show();
+    }
 }

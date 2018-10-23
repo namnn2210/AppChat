@@ -1,47 +1,52 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.StackPane?>
-<GridPane fx:controller="appchat.app.controllers.LoginController"
-          stylesheets="/css/login.css"
-          xmlns:fx="http://javafx.com/fxml">
-    <children>
-        <Text text="Welcome"
-              fx:id="title"
-              GridPane.rowIndex="0"
-              GridPane.columnSpan="2"
-        />
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-        <StackPane styleClass="username"
-                   GridPane.rowIndex="1"
-                   GridPane.columnIndex="0">
-            <children>
-                <VBox>
-                    <Label text="Username" fx:id="usernameLabel"/>
-                    <TextField fx:id="usernameField" promptText="Username"/>
-                </VBox>
-            </children>
-        </StackPane>
-
-        <StackPane styleClass="password" GridPane.rowIndex="2" GridPane.columnIndex="0">
-            <children>
-                <VBox>
-                    <Label text="Password" fx:id="passwordLabel"/>
-                    <PasswordField fx:id="passwordField" promptText="Password"/>
-                </VBox>
-            </children>
-        </StackPane>
-
-        <HBox styleClass="buttons" GridPane.rowIndex="5" GridPane.columnIndex="0">
-            <Button fx:id="login" text="Login" onAction="#login"/>
-            <Button fx:id="register" text="Register" onAction="#handleRegisterAction"/>
-        </HBox>
-    </children>
-</GridPane>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="550.0" styleClass="registerBtn" stylesheets="/css/login.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appchat.app.controllers.LoginController">
+   <children>
+      <Label layoutX="96.0" layoutY="150.0" text="Welcome">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+      <Label layoutX="96.0" layoutY="223.0" minHeight="-Infinity" minWidth="-Infinity" text="Please enter your user information to login">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="96.0" layoutY="467.0" text="Don't you have an account ?" />
+      <Hyperlink fx:id="register" layoutX="244.0" layoutY="464.0" onAction="#handleRegisterAction" styleClass="registerBtn" stylesheets="@../css/login.css" text="Click here to register" />
+      <VBox layoutX="96.0" layoutY="270.0" prefHeight="115.0" prefWidth="250.0">
+         <children>
+            <Label text="Username">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="usernameField" promptText="Username">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label text="Password">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="passwordField" promptText="Password">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </PasswordField>
+         </children>
+      </VBox>
+      <Button fx:id="login" layoutX="96.0" layoutY="404.0" mnemonicParsing="false" onAction="#login" text="Login">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

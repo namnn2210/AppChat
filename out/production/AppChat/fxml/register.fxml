@@ -1,134 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.text.Text?>
-
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Button?>
-
-<?import javafx.scene.control.ToggleGroup?>
-<GridPane xmlns="http://javafx.com/javafx"
-          xmlns:fx="http://javafx.com/fxml"
-          stylesheets="/css/register.css"
-          fx:controller="appchat.app.controllers.RegisterController">
-    <children>
-
-        <Text text="Create new account"
-              fx:id="title"
-              GridPane.rowIndex="0"
-              GridPane.columnSpan="2"
-        />
-
-        <StackPane styleClass="username"
-                   GridPane.rowIndex="1"
-                   GridPane.columnIndex="0">
-            <children>
-                <VBox>
-                    <Label text="Username" fx:id="usernameLabel"/>
-                    <TextField fx:id="userNameField" promptText="Username"/>
-                </VBox>
-            </children>
-        </StackPane>
-
-
-        <StackPane styleClass="email"
-                   GridPane.rowIndex="2"
-                   GridPane.columnIndex="0">
-            <children>
-                <VBox>
-                    <Label text="Email Address" fx:id="emailLabel"/>
-                    <TextField fx:id="emailField" promptText="Email Address"/>
-                </VBox>
-            </children>
-        </StackPane>
-
-        <StackPane styleClass="password"
-                   GridPane.rowIndex="3"
-                   GridPane.columnIndex="0">
-            <children>
-                <VBox>
-                    <Label text="Password" fx:id="passwordLabel"/>
-                    <PasswordField fx:id="passwordField" promptText="Password"/>
-                </VBox>
-            </children>
-        </StackPane>
-
-        <StackPane styleClass="confirmPassword"
-                   GridPane.rowIndex="4"
-                   GridPane.columnIndex="0">
-            <children>
-                <VBox>
-                    <Label text="Confirm Password" fx:id="confirmPasswordLabel"/>
-                    <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password"/>
-                </VBox>
-            </children>
-        </StackPane>
-
-        <StackPane styleClass="fullName"
-                   GridPane.rowIndex="5"
-                   GridPane.columnIndex="0">
-            <children>
-                <VBox>
-                    <Label text="Full Name" fx:id="fullNameLabel"/>
-                    <TextField fx:id="fullNameField" promptText="Full Name"/>
-                </VBox>
-            </children>
-        </StackPane>
-
-        <StackPane styleClass="gender" GridPane.rowIndex="6" GridPane.columnIndex="0">
-            <children>
-                <VBox>
-                    <Label text="Gender" fx:id="genderLabel"/>
-                    <VBox styleClass="genderChoice">
-                        <children>
-                            <fx:define>
-                                <ToggleGroup fx:id="myGender"/>
-                            </fx:define>
-                            <RadioButton fx:id="male" text="Male" toggleGroup="$myGender"/>
-                            <RadioButton fx:id="female" text="Female" toggleGroup="$myGender"/>
-                        </children>
-                    </VBox>
-                </VBox>
-            </children>
-        </StackPane>
-
-        <StackPane styleClass="address"
-                   GridPane.rowIndex="7"
-                   GridPane.columnIndex="0">
-            <children>
-                <VBox>
-                    <Label text="Address" fx:id="addressLabel"/>
-                    <TextField fx:id="addressField" promptText="Address"/>
-                </VBox>
-            </children>
-        </StackPane>
-
-        <StackPane styleClass="phone" GridPane.rowIndex="8" GridPane.columnIndex="0">
-            <children>
-                <VBox>
-                    <Label text="Phone Number" fx:id="phoneLabel"/>
-                    <TextField fx:id="phoneField" promptText="Phone"/>
-                </VBox>
-            </children>
-        </StackPane>
-
-        <StackPane styleClass="dob" GridPane.rowIndex="9" GridPane.columnIndex="0">
-            <children>
-                <VBox>
-                    <Label text="Birthday" fx:id="dobLabel"/>
-                    <DatePicker fx:id="date" promptText="Birthday"/>
-                </VBox>
-            </children>
-        </StackPane>
-
-        <HBox styleClass="buttons" GridPane.rowIndex="10" GridPane.columnIndex="0">
-            <Button fx:id="register" text="Submit" onAction="#register"/>
-        </HBox>
-
-    </children>
-</GridPane>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="550.0" styleClass="loginBtn" stylesheets="@../css/register.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appchat.app.controllers.RegisterController">
+   <children>
+      <Label layoutX="83.0" layoutY="31.0" text="Create a new account">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <VBox layoutX="83.0" layoutY="76.0" prefHeight="428.0" prefWidth="257.0" styleClass="form" stylesheets="@../css/register.css">
+         <children>
+            <Label text="Username">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="userNameField" promptText="Username" />
+            <Label text="Password">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="passwordField" promptText="Password" />
+            <Label text="Confirm Password">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password" />
+            <Label text="Full Name">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="fullNameField" promptText="Full Name" />
+            <Label text="Email Address">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailField" promptText="Email Address" />
+            <Label text="Gender">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="male" mnemonicParsing="false" text="Male">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="myGender" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="female" mnemonicParsing="false" text="Female" toggleGroup="$myGender">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </RadioButton>
+            <Label text="Address">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="addressField" promptText="Address" />
+            <Label text="Phone Number">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="phoneField" promptText="Phone Number" />
+            <Label text="Date of Birth">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="date" />
+         </children>
+      </VBox>
+      <Button fx:id="register" layoutX="83.0" layoutY="701.0" mnemonicParsing="false" onAction="#register" text="Submit">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Text layoutX="83.0" layoutY="762.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already had an account ?" />
+      <Hyperlink fx:id="login" onAction="#handleLoginAction" layoutX="217.0" layoutY="746.0" styleClass="loginBtn" stylesheets="@../css/register.css" text="Click here to login" />
+   </children>
+</Pane>
