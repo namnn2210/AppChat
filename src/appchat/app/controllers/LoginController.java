@@ -9,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -34,7 +33,7 @@ public class LoginController {
     private User user = null;
     private HashMap<String, String> errors = null;
 
-    public void login(ActionEvent actionEvent) {
+    public void login(ActionEvent actionEvent) throws Exception {
         String username = usernameField.getText();
         String password = passwordField.getText();
         user = new User(username, password);
@@ -53,6 +52,7 @@ public class LoginController {
                 }
                 else {
                     loginAlert();
+                    showClientGUI();
                 }
             }
         }
@@ -116,6 +116,15 @@ public class LoginController {
             root = FXMLLoader.load(getClass().getResource("/fxml/register.fxml"));
         }
         stage.setScene(new Scene(root, 550, 800));
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    public void showClientGUI() throws Exception {
+        stage = (Stage) register.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("/fxml/clientGUI.fxml"));
+        stage.setTitle("Messages");
+        stage.setScene(new Scene(root, 1000, 800));
         stage.setResizable(false);
         stage.show();
     }

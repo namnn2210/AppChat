@@ -89,7 +89,13 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Text layoutX="83.0" layoutY="762.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already had an account ?" />
-      <Hyperlink fx:id="login" onAction="#handleLoginAction" layoutX="217.0" layoutY="746.0" styleClass="loginBtn" stylesheets="@../css/register.css" text="Click here to login" />
+      <Text layoutX="83.0" layoutY="762.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already had an account ?">
+         <font>
+            <Font size="14.0" />
+         </font></Text>
+      <Hyperlink fx:id="login" layoutX="239.0" layoutY="742.0" onAction="#handleLoginAction" styleClass="loginBtn" stylesheets="@../css/register.css" text="Click here to login">
+         <font>
+            <Font size="14.0" />
+         </font></Hyperlink>
    </children>
 </Pane>
