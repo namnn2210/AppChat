@@ -28,12 +28,13 @@ public class ContactModel {
             Statement statement = DBConnection.getInstance().getConnection().createStatement();
             String sql = "SELECT * FROM contacts WHERE contactid='" + id + "'";
             ResultSet rs = statement.executeQuery(sql);
-            if (rs.next()) {
+            while (rs.next()) {
                 listId.add(rs.getInt("friendid"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        System.out.println("list Id:" + listId.size());
         return listId;
     }
 

@@ -3,5 +3,10 @@
 }
 
 .userInfo {
+    -fx-text-fill: #1E90FF;
+    -fx-background-color: #1E90FF;
+}
+
+.label{
     -fx-text-fill: white;
 }
