@@ -9,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -34,6 +33,8 @@ public class LoginController {
     private User user = null;
     private HashMap<String, String> errors = null;
 
+    private User currenLoginUser = null;
+
     public void login(ActionEvent actionEvent) {
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -53,9 +54,14 @@ public class LoginController {
                 }
                 else {
                     loginAlert();
+                    currenLoginUser = user;
                 }
             }
         }
+    }
+
+    public User getCurrentUser() {
+        return currenLoginUser;
     }
 
     public HashMap<String, String> checkLogin() {

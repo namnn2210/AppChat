@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="800.0" prefWidth="400.0">
+         <children>
+            <Pane prefHeight="100.0" prefWidth="400.0">
+               <children>
+                  <Text layoutX="168.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Home">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="161.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Messages">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane layoutY="100.0" prefHeight="700.0" prefWidth="400.0">
+               <children>
+                  <Pane layoutY="650.0" prefHeight="50.0" prefWidth="400.0">
+                     <children>
+                        <Button layoutX="37.0" layoutY="13.0" mnemonicParsing="false" text="Button" />
+                        <Button layoutX="166.0" layoutY="13.0" mnemonicParsing="false" text="Button" />
+                        <Button layoutX="291.0" layoutY="13.0" mnemonicParsing="false" text="Button" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane layoutX="393.0" prefHeight="800.0" prefWidth="600.0">
+         <children>
+            <TextArea layoutY="750.0" prefHeight="50.0" prefWidth="550.0" />
+            <Button layoutX="550.0" layoutY="763.0" mnemonicParsing="false" text="Button" />
+            <Pane prefHeight="750.0" prefWidth="600.0" />
+         </children>
+      </Pane>
+   </children>
+</Pane>

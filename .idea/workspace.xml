@@ -3,20 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f6021ec0-ad1e-4efe-9356-9957fd2e5b59" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppChat/appchat/app/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppChat/appchat/app/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppChat/appchat/app/controllers/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppChat/appchat/app/controllers/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppChat/appchat/app/controllers/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppChat/appchat/app/controllers/RegisterController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppChat/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppChat/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppChat/css/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppChat/css/register.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppChat/fxml/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppChat/fxml/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AppChat/fxml/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AppChat/fxml/register.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/register.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fxml/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fxml/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fxml/register.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/appchat/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/appchat/app/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/appchat/app/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/appchat/app/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/appchat/app/controllers/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/appchat/app/controllers/RegisterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Class Management.rar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../HelloLOL (3)/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloLOL (3)/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HelloLOL/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HelloLOL/.idea/workspace.xml" afterDir="false" />
@@ -44,20 +31,20 @@
         <counts>
           <entry key="css" value="397" />
           <entry key="fxml" value="77" />
-          <entry key="java" value="2609" />
+          <entry key="java" value="2691" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="397" />
-          <entry key="JAVA" value="2609" />
+          <entry key="JAVA" value="2691" />
           <entry key="XML" value="77" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="3" />
-          <entry key="fxml" value="6" />
+          <entry key="fxml" value="7" />
           <entry key="java" value="14" />
           <entry key="xml" value="2" />
         </counts>
@@ -66,7 +53,7 @@
         <counts>
           <entry key="CSS" value="3" />
           <entry key="JAVA" value="14" />
-          <entry key="XML" value="8" />
+          <entry key="XML" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -102,71 +89,25 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/appchat/app/controllers/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+            <state relative-caret-position="-272">
+              <caret line="63" column="31" lean-forward="true" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1630#1631#0" expanded="true" />
+                <element signature="e#1668#1669#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/appchat/app/controllers/RegisterController.java">
+        <entry file="file://$PROJECT_DIR$/resources/fxml/dashboard.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="489">
-              <caret line="196" column="75" selection-start-line="196" selection-start-column="75" selection-end-line="196" selection-end-column="75" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/fxml/register.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="92" column="15" lean-forward="true" selection-start-line="92" selection-start-column="15" selection-end-line="92" selection-end-column="15" />
+            <state relative-caret-position="-333">
+              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
             </state>
           </provider>
           <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/css/login.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="16" column="1" lean-forward="true" selection-start-line="10" selection-end-line="16" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/appchat/app/model/UserModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="38" column="76" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="76" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/appchat/app/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/css/register.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="19" column="25" lean-forward="true" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
-            </state>
-          </provider>
         </entry>
       </file>
     </leaf>
@@ -190,11 +131,12 @@
         <option value="$PROJECT_DIR$/src/appchat/app/model/UserModel.java" />
         <option value="$PROJECT_DIR$/src/appchat/app/Main.java" />
         <option value="$PROJECT_DIR$/resources/fxml/login.fxml" />
-        <option value="$PROJECT_DIR$/src/appchat/app/controllers/LoginController.java" />
         <option value="$PROJECT_DIR$/resources/css/login.css" />
         <option value="$PROJECT_DIR$/resources/css/register.css" />
         <option value="$PROJECT_DIR$/resources/fxml/register.fxml" />
         <option value="$PROJECT_DIR$/src/appchat/app/controllers/RegisterController.java" />
+        <option value="$PROJECT_DIR$/src/appchat/app/controllers/LoginController.java" />
+        <option value="$PROJECT_DIR$/resources/fxml/dashboard.fxml" />
       </list>
     </option>
   </component>
@@ -295,7 +237,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540265742095" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540267825879" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
@@ -374,15 +316,16 @@
       <workItem from="1540224772761" duration="522000" />
       <workItem from="1540261308343" duration="88000" />
       <workItem from="1540261689646" duration="10000" />
-      <workItem from="1540262704062" duration="1244000" />
+      <workItem from="1540262704062" duration="2852000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17831000" />
+    <option name="totallyTimeSpent" value="19439000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.20469083" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -393,7 +336,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18093175" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.18093175" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -406,7 +349,7 @@
       <window_info anchor="bottom" id="Event Log" order="12" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.11484291" />
       <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="15" weight="0.47020584" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="15" visible="true" weight="0.24485373" />
       <window_info anchor="right" id="Coverage" order="0" side_tool="true" weight="0.32995737" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
@@ -513,25 +456,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/appchat/app/controllers/LoginController.java">
+    <entry file="file://$PROJECT_DIR$/src/appchat/app/controllers/RegisterController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+        <state relative-caret-position="1878">
+          <caret line="205" column="1" lean-forward="true" selection-start-line="205" selection-start-column="1" selection-end-line="205" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/appchat/app/controllers/RegisterController.java">
+    <entry file="file://$PROJECT_DIR$/src/appchat/app/controllers/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="196" column="75" selection-start-line="196" selection-start-column="75" selection-end-line="196" selection-end-column="75" />
+        <state relative-caret-position="-272">
+          <caret line="63" column="31" lean-forward="true" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1630#1631#0" expanded="true" />
+            <element signature="e#1668#1669#0" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/fxml/dashboard.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-333">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
   </component>
 </project>
