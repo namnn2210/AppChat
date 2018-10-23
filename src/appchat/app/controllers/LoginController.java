@@ -1,7 +1,6 @@
 package appchat.app.controllers;
 
 import appchat.app.entity.User;
-import appchat.app.model.DBConnection;
 import appchat.app.model.UserModel;
 import appchat.app.utility.Hash;
 import javafx.event.ActionEvent;
@@ -11,10 +10,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.sql.Connection;
 import java.util.HashMap;
 
 public class LoginController {
@@ -23,7 +22,7 @@ public class LoginController {
     Parent root;
 
     @FXML
-    private Button register;
+    private Hyperlink register;
 
     @FXML
     private TextField usernameField;
@@ -116,7 +115,7 @@ public class LoginController {
             stage = (Stage) register.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("/fxml/register.fxml"));
         }
-        stage.setScene(new Scene(root, 400, 700));
+        stage.setScene(new Scene(root, 550, 800));
         stage.setResizable(false);
         stage.show();
     }

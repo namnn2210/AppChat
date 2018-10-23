@@ -1,12 +1,17 @@
 .root {
-    -fx-alignment: center;
-    -fx-hgap: 10;
-    -fx-vgap: 10;
-}
-#title {
-    -fx-font-size: 50px;
+    -fx-background-color: white;
+    -fx-text-fill: black;
 }
 
-.buttons {
-    -fx-spacing: 10px;
+#login {
+    -fx-background-color: blue;
+    -fx-text-fill: white;
+}
+
+.registerBtn {
+    -fx-text-fill: blue;
+    -fx-border-color: white;
+}
+.registerBtn:hover {
+    -fx-underline: false;
 }
