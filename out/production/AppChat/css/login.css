@@ -4,12 +4,12 @@
 }
 
 #login {
-    -fx-background-color: blue;
+    -fx-background-color:  #1E90FF;
     -fx-text-fill: white;
 }
 
 .registerBtn {
-    -fx-text-fill: blue;
+    -fx-text-fill:  #1E90FF;
     -fx-border-color: white;
 }
 .registerBtn:hover {
