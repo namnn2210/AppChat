@@ -54,7 +54,7 @@
       </Pane>
       <Pane id="friendPane" layoutY="116.0" prefHeight="669.0" prefWidth="250.0" styleClass="friendpane">
          <children>
-            <ListView fx:id="listFriend" layoutY="59.0" prefHeight="611.0" prefWidth="250.0" />
+            <ListView fx:id="listFriend" layoutY="59.0" prefHeight="611.0" prefWidth="250.0" onMouseClicked="#onClickItemListView"/>
             <ImageView fx:id="addFriendBtn" fitHeight="57.0" fitWidth="70.0" layoutX="14.0" onMouseClicked="#addFriend" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@/img/add (1).png" />

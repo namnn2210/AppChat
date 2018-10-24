@@ -14,10 +14,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -45,7 +47,7 @@ public class ClientGUIController implements Initializable {
 
 
     @FXML
-    ListView<String> listFriend;
+    ListView<User> listFriend;
 
     @FXML
     private Button addBtn;
@@ -79,7 +81,7 @@ public class ClientGUIController implements Initializable {
     }
 
     public void addFriend(MouseEvent mouseEvent) throws Exception {
-        if (mouseEvent.getSource()== addFriendBtn) {
+        if (mouseEvent.getSource() == addFriendBtn) {
             stage = (Stage) addFriendBtn.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("/fxml/addFriendForm.fxml"));
             stage.setTitle("Add new friend");
@@ -89,11 +91,31 @@ public class ClientGUIController implements Initializable {
         }
     }
 
+    //Chọn friend trong list để chat
+    public void onClickItemListView(MouseEvent mouseEvent) throws Exception {
+        System.out.println("Click on " + listFriend.getSelectionModel().getSelectedItems());
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<String> listFriendforView = listFriend.getItems();
-        for (String name : userModel.getListUser(contactModel.getListContact(currentUserLogin.getId()))){
-            listFriendforView.add(name);
+        ObservableList<User> listFriendforView = listFriend.getItems();
+        for (User user : userModel.getListUser(contactModel.getListContact(currentUserLogin.getId()))) {
+            listFriendforView.add(user);
         }
+        listFriend.setCellFactory(new Callback<ListView<User>, ListCell<User>>() {
+            @Override
+            public ListCell<User> call(ListView<User> param) {
+                ListCell<User> cell = new ListCell<User>() {
+                    @Override
+                    protected void updateItem(User user, boolean bln) {
+                        super.updateItem(user, bln);
+                        if (user != null) {
+                            setText(user.getUserName());
+                        }
+                    }
+                };
+                return cell;
+            }
+        });
     }
 }

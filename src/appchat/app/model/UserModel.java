@@ -90,8 +90,8 @@ public class UserModel {
         return true;
     }
 
-    public ArrayList<String> getListUser(ArrayList<Integer> listIdFriend){
-        ArrayList<String> listUser = new ArrayList<>();
+    public ArrayList<User> getListUser(ArrayList<Integer> listIdFriend){
+        ArrayList<User> listUser = new ArrayList<>();
         try {
             for (int id : listIdFriend) {
                 Statement statement = DBConnection.getInstance().getConnection().createStatement();
@@ -99,7 +99,9 @@ public class UserModel {
                 ResultSet rs = statement.executeQuery(sql);
                 if (rs.next()) {
                     String username = rs.getString("username");
-                    listUser.add(username);
+                    String password = rs.getString("password");
+                    int userid = rs.getInt("id");
+                    listUser.add(new User(userid,username,password));
                 }
             }
         } catch (SQLException ex) {
