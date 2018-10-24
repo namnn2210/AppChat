@@ -93,7 +93,10 @@ public class ClientGUIController implements Initializable {
 
     //Chọn friend trong list để chat
     public void onClickItemListView(MouseEvent mouseEvent) throws Exception {
-        System.out.println("Click on " + listFriend.getSelectionModel().getSelectedItems());
+        System.out.println("Click on id =" + listFriend.getSelectionModel().getSelectedItem().getId());
+
+//        User user = listFriend.getSelectionModel().getSelectedItem();
+//        System.out.println(user);
     }
 
     @Override
