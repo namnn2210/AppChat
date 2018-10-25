@@ -1,21 +1,33 @@
 package appchat.app.controllers;
 
 import appchat.app.entity.User;
+import appchat.app.model.UserModel;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class AccountInfoController {
     public static User currentUserLogin;
 
+    private UserModel userModel = new UserModel();
+    private RegisterController registerController = new RegisterController();
+
+    private Stage primaryStage;
     private Stage stage;
     private Parent root;
 
@@ -29,6 +41,10 @@ public class AccountInfoController {
 
     @FXML
     private ImageView backToChat;
+    @FXML
+    private Button logout;
+
+
 
     public AccountInfoController() {
         username = new SimpleStringProperty(currentUserLogin.getUserName());
@@ -128,14 +144,77 @@ public class AccountInfoController {
         this.gender.set(gender);
     }
 
-    public void backToChat(MouseEvent mouseEvent) throws Exception{
+    public void backToChat(MouseEvent mouseEvent) throws Exception {
         if (mouseEvent.getSource() == backToChat) {
-            stage = (Stage) backToChat.getScene().getWindow();
+            primaryStage = (Stage) backToChat.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("/fxml/clientGUI.fxml"));
-            stage.setTitle("Messages");
-            stage.setScene(new Scene(root, 1000, 800));
+            primaryStage.setTitle("Messages");
+            primaryStage.setScene(new Scene(root, 1000, 800));
+            primaryStage.setResizable(false);
+            primaryStage.show();
+        }
+    }
+
+    public void updateInfo(ActionEvent actionEvent) {
+//        String fullname = fullnameField.getText();
+//        String email = emailField.getText();
+//        String phone = phoneField.getText();
+//        if(userModel.update(currentUserLogin,fullname,email,phone)) {
+//            updatedAlert();
+//        }
+//        else {
+//            updateFailedAlert();
+//        }
+    }
+
+    private void updatedAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Updating ");
+        alert.setHeaderText(null);
+        alert.setContentText("Update successful !");
+        alert.showAndWait();
+    }
+
+    private void updateFailedAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Updating ");
+        alert.setHeaderText(null);
+        alert.setContentText("Update failed !");
+        alert.showAndWait();
+    }
+
+    public void changePasswordBtn(ActionEvent actionEvent) throws Exception {
+        Stage secondStage = new Stage();
+        Parent secondScene = FXMLLoader.load(getClass().getResource("/fxml/changePassword.fxml"));
+        secondStage.initOwner(primaryStage);
+        secondStage.initModality(Modality.WINDOW_MODAL);
+        secondStage.setTitle("Change password");
+        secondStage.setScene(new Scene(secondScene, 600, 400));
+        secondStage.setResizable(false);
+        secondStage.show();
+    }
+
+    private void logoutAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Logging out ");
+        alert.setHeaderText(null);
+        alert.setContentText("Logout successfully !");
+        alert.showAndWait();
+    }
+
+    public void logout(ActionEvent actionEvent) {
+        currentUserLogin = null;
+        logoutAlert();
+        try {
+            if (actionEvent.getSource() == logout) {
+                stage = (Stage) logout.getScene().getWindow();
+                root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+            }
+            stage.setScene(new Scene(root, 550, 700));
             stage.setResizable(false);
             stage.show();
+        } catch (IOException ex){
+            ex.printStackTrace();
         }
     }
 }
