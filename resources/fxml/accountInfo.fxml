@@ -98,7 +98,7 @@
             <Image url="/img/back-icon.png" />
          </image>
       </ImageView>
-      <Button layoutX="205.0" layoutY="648.0" mnemonicParsing="false" onAction="#updateInfo" style="-fx-background-color: #1E90FF;" stylesheets="/css/accountInfo.css" text="Update Information" textFill="WHITE">
+      <Button layoutX="205.0" layoutY="648.0" mnemonicParsing="false" onAction="#toUpdateForm" style="-fx-background-color: #1E90FF;" stylesheets="/css/accountInfo.css" text="Update Information" textFill="WHITE">
          <font>
             <Font size="17.0" />
          </font>

@@ -1,6 +1,6 @@
-/*.root {*/
-    /*-fx-background-color: white;*/
-/*}*/
+.root {
+    -fx-background-color: white;
+}
 
 #chatPane {
     -fx-text-fill: 	#000000;

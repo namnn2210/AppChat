@@ -11,9 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -38,6 +36,20 @@ public class AccountInfoController {
     private StringProperty gender;
     private StringProperty dob;
     private StringProperty phone;
+
+    @FXML
+    private TextField updateName;
+    @FXML
+    private TextField updateEmail;
+    @FXML
+    private TextField updateAddress;
+    @FXML
+    private DatePicker updateDate;
+    @FXML
+    private RadioButton updateMaleGender;
+    @FXML
+    private RadioButton updateFemaleGender;
+
 
     @FXML
     private ImageView backToChat;
@@ -216,5 +228,16 @@ public class AccountInfoController {
         } catch (IOException ex){
             ex.printStackTrace();
         }
+    }
+
+    public void toUpdateForm(ActionEvent actionEvent) throws Exception {
+        Stage updateStage = new Stage();
+        Parent updateScene = FXMLLoader.load(getClass().getResource("/fxml/updateInfo.fxml"));
+        updateStage.initOwner(primaryStage);
+        updateStage.initModality(Modality.WINDOW_MODAL);
+        updateStage.setTitle("Update account information");
+        updateStage.setScene(new Scene(updateScene, 800, 600));
+        updateStage.setResizable(false);
+        updateStage.show();
     }
 }
