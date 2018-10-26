@@ -61,6 +61,43 @@ public class UserModel {
         return user;
     }
 
+    public boolean changePassword(User user, String password) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            String sql = "UPDATE users SET users.password = ? WHERE users.id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1,password);
+            ps.setInt(2,user.getId());
+            ps.executeUpdate();
+        }
+        catch(SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean update(User user,String fullname, String email, String phone, String address, String date, int gender) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            String sql = "UPDATE users SET users.fullname = ?, users.email = ?, users.phone = ?, users.address = ?, users.birthdate = ?, users.gender = ? WHERE users.id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1,fullname);
+            ps.setString(2,email);
+            ps.setString(3, phone);
+            ps.setString(4, address);
+            ps.setString(5,date);
+            ps.setInt(6,gender);
+            ps.setInt(7,user.getId());
+            ps.executeUpdate();
+        }
+        catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
 
     public boolean checkExistEmail(String email) {
         try {

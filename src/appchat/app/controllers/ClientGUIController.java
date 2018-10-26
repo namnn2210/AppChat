@@ -82,12 +82,12 @@ public class ClientGUIController implements Initializable {
 
     public void addFriend(MouseEvent mouseEvent) throws Exception {
         if (mouseEvent.getSource() == addFriendBtn) {
-            stage = (Stage) addFriendBtn.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/fxml/addFriendForm.fxml"));
-            stage.setTitle("Add new friend");
-            stage.setScene(new Scene(root, 382, 166));
-            stage.setResizable(false);
-            stage.show();
+            Stage addFriendStage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/addFriendForm.fxml"));
+            addFriendStage.setTitle("Add new friend");
+            addFriendStage.setScene(new Scene(root, 382, 166));
+            addFriendStage.setResizable(false);
+            addFriendStage.show();
         }
     }
 

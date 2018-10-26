@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" stylesheets="/css/accountInfo.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appchat.app.controllers.AccountInfoController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" stylesheets="/css/accountInfo.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appchat.app.controllers.AccountInfoController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="83.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -50,18 +53,10 @@
                <font>
                   <Font size="19.0" />
                </font></Label>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="${controller.fullName}" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <font>
-                  <Font size="17.0" />
-               </font></Text>
             <Label text="Email" GridPane.rowIndex="3">
                <font>
                   <Font size="19.0" />
                </font></Label>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="${controller.email}" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <font>
-                  <Font size="17.0" />
-               </font></Text>
             <Label text="Date of Birth" GridPane.rowIndex="4">
                <font>
                   <Font size="19.0" />
@@ -74,10 +69,6 @@
                <font>
                   <Font size="19.0" />
                </font></Label>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="${controller.phone}" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <font>
-                  <Font size="17.0" />
-               </font></Text>
             <Label text="Gender" GridPane.rowIndex="6">
                <font>
                   <Font size="19.0" />
@@ -88,12 +79,44 @@
                   <Font size="17.0" />
                </font>
             </Text>
+            <Text text="${controller.fullName}" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="17.0" />
+               </font></Text>
+            <Text text="${controller.phone}" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font size="17.0" />
+               </font></Text>
+            <Text text="${controller.email}" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font size="17.0" />
+               </font></Text>
          </children>
       </GridPane>
-      <ImageView fx:id="backToChat" onMouseClicked="#backToChat" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="backToChat" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#backToChat" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="/img/back-icon.png" />
          </image>
       </ImageView>
+      <Button layoutX="205.0" layoutY="648.0" mnemonicParsing="false" onAction="#toUpdateForm" style="-fx-background-color: #1E90FF;" stylesheets="/css/accountInfo.css" text="Update Information" textFill="WHITE">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="change" layoutX="413.0" layoutY="648.0" mnemonicParsing="false" onAction="#changePasswordBtn" style="-fx-background-color: #1E90FF;" stylesheets="/css/accountInfo.css" text="Change Password" textFill="WHITE">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Text layoutX="285.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account Information">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Button fx:id="logout" onAction="#logout" layoutX="607.0" layoutY="648.0" mnemonicParsing="false" style="-fx-background-color: #FF0000; -fx-text-fill: #FFFFFF;" stylesheets="@../css/accountInfo.css" text="Log Out">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
