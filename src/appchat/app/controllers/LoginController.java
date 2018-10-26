@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.util.HashMap;
@@ -33,6 +35,31 @@ public class LoginController {
     private User user = null;
     private HashMap<String, String> errors = null;
 
+    public void login(KeyEvent keyEvent) throws Exception{
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+            user = new User(username, password);
+            errors = checkLogin();
+            if (errors.size() > 0) {
+                checkLoginAlert();
+            } else {
+                user = userModel.select(username);
+                if (user == null) {
+                    usernameAlert();
+                } else {
+                    if (!(user.getPassWord().equals(Hash.generateSaltedSHA1(password, user.getSalt())))) {
+                        passwordAlert();
+                    } else {
+                        loginAlert();
+                        ClientGUIController.currentUserLogin = user;
+                        AccountInfoController.currentUserLogin = user;
+                        showClientGUI();
+                    }
+                }
+            }
+        }
+    }
 
     public void login(ActionEvent actionEvent) throws Exception {
         String username = usernameField.getText();
