@@ -31,6 +31,7 @@ public class AccountInfoController {
     private Parent root;
     private Parent updateScene;
     private Stage updateStage;
+    private Stage loginStage = null;
 
     private StringProperty username;
     private StringProperty password;
@@ -163,14 +164,13 @@ public class AccountInfoController {
     }
 
     public void backToChat(MouseEvent mouseEvent) throws Exception {
-        if (mouseEvent.getSource() == backToChat) {
-            primaryStage = (Stage) backToChat.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/fxml/clientGUI.fxml"));
-            primaryStage.setTitle("Messages");
-            primaryStage.setScene(new Scene(root, 1000, 800));
-            primaryStage.setResizable(false);
-            primaryStage.show();
-        }
+        primaryStage = (Stage) backToChat.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("/fxml/clientGUI.fxml"));
+        primaryStage.setTitle("Messages");
+        primaryStage.setScene(new Scene(root, 1000, 800));
+        primaryStage.setResizable(false);
+        primaryStage.show();
+
     }
 
     private HashMap<String, String> isValidUpdateInfo() {
@@ -184,9 +184,9 @@ public class AccountInfoController {
         } else if (updateDate.getEditor().getText().length() == 0 || updateDate.getEditor().getText().equals("")) {
             errors.put("date", "New date of birth is empty!");
         } else if (!(updateMaleGender.isSelected() || updateFemaleGender.isSelected())) {
-            errors.put("gender","Please choose your gender");
+            errors.put("gender", "Please choose your gender");
         } else if (updatePhone.getText().length() == 0 || updatePhone.getText().equals("")) {
-            errors.put("phone","New phone is empty");
+            errors.put("phone", "New phone is empty");
         }
 
         return errors;
@@ -207,22 +207,20 @@ public class AccountInfoController {
             gender = 0;
         }
         errors = isValidUpdateInfo();
-        if (errors.size() == 0 ) {
-            if (userModel.update(currentUserLogin,fullname,email,phone,address,date,gender)) {
+        if (errors.size() == 0) {
+            if (userModel.update(currentUserLogin, fullname, email, phone, address, date, gender)) {
                 updatedAlert();
-            }
-            else {
+            } else {
                 updateFailedAlert();
             }
-        }
-        else {
+        } else {
             errorsAlert();
         }
     }
 
     private void errorsAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Change password failed");
+        alert.setTitle("Update information failed");
         alert.setHeaderText(null);
         alert.setContentText("Please fix following errors and try again");
         for (String message : errors.values()) {
@@ -269,17 +267,8 @@ public class AccountInfoController {
     public void logout(ActionEvent actionEvent) {
         currentUserLogin = null;
         logoutAlert();
-        try {
-            if (actionEvent.getSource() == logout) {
-                stage = (Stage) logout.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
-            }
-            stage.setScene(new Scene(root, 550, 700));
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        loginStage = loginStage();
+        loginStage.show();
     }
 
     public void toUpdateForm(ActionEvent actionEvent) throws Exception {
@@ -291,5 +280,17 @@ public class AccountInfoController {
         updateStage.setScene(new Scene(updateScene, 800, 600));
         updateStage.setResizable(false);
         updateStage.show();
+    }
+
+    public Stage loginStage() {
+        try {
+            loginStage = (Stage) logout.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+            loginStage.setScene(new Scene(root, 550, 700));
+            loginStage.setResizable(false);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return loginStage;
     }
 }
