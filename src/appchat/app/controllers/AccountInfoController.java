@@ -18,6 +18,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class AccountInfoController {
     public static User currentUserLogin;
@@ -28,6 +29,8 @@ public class AccountInfoController {
     private Stage primaryStage;
     private Stage stage;
     private Parent root;
+    private Parent updateScene;
+    private Stage updateStage;
 
     private StringProperty username;
     private StringProperty password;
@@ -44,18 +47,21 @@ public class AccountInfoController {
     @FXML
     private TextField updateAddress;
     @FXML
+    private TextField updatePhone;
+    @FXML
     private DatePicker updateDate;
     @FXML
     private RadioButton updateMaleGender;
     @FXML
     private RadioButton updateFemaleGender;
 
+    private HashMap<String, String> errors = null;
+
 
     @FXML
     private ImageView backToChat;
     @FXML
     private Button logout;
-
 
 
     public AccountInfoController() {
@@ -167,16 +173,62 @@ public class AccountInfoController {
         }
     }
 
+    private HashMap<String, String> isValidUpdateInfo() {
+        errors = new HashMap<>();
+        if (updateName.getText().length() == 0 || updateName.getText().equals("")) {
+            errors.put("name", "New full name is empty!");
+        } else if (updateEmail.getText().length() == 0 || updateEmail.getText().equals("")) {
+            errors.put("email", "New email is empty!");
+        } else if (updateAddress.getText().length() == 0 || updateAddress.getText().equals("")) {
+            errors.put("address", "New address is empty!");
+        } else if (updateDate.getEditor().getText().length() == 0 || updateDate.getEditor().getText().equals("")) {
+            errors.put("date", "New date of birth is empty!");
+        } else if (!(updateMaleGender.isSelected() || updateFemaleGender.isSelected())) {
+            errors.put("gender","Please choose your gender");
+        } else if (updatePhone.getText().length() == 0 || updatePhone.getText().equals("")) {
+            errors.put("phone","New phone is empty");
+        }
+
+        return errors;
+    }
+
     public void updateInfo(ActionEvent actionEvent) {
-//        String fullname = fullnameField.getText();
-//        String email = emailField.getText();
-//        String phone = phoneField.getText();
-//        if(userModel.update(currentUserLogin,fullname,email,phone)) {
-//            updatedAlert();
-//        }
-//        else {
-//            updateFailedAlert();
-//        }
+        String fullname = updateName.getText();
+        String email = updateEmail.getText();
+        String phone = updatePhone.getText();
+        String address = updateAddress.getText();
+        String date = updateDate.getEditor().getText();
+        int gender;
+        if (updateMaleGender.isSelected()) {
+            gender = 1;
+        } else if (updateFemaleGender.isSelected()) {
+            gender = 2;
+        } else {
+            gender = 0;
+        }
+        errors = isValidUpdateInfo();
+        if (errors.size() == 0 ) {
+            if (userModel.update(currentUserLogin,fullname,email,phone,address,date,gender)) {
+                updatedAlert();
+            }
+            else {
+                updateFailedAlert();
+            }
+        }
+        else {
+            errorsAlert();
+        }
+    }
+
+    private void errorsAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Change password failed");
+        alert.setHeaderText(null);
+        alert.setContentText("Please fix following errors and try again");
+        for (String message : errors.values()) {
+            alert.setContentText(message);
+        }
+        alert.showAndWait();
     }
 
     private void updatedAlert() {
@@ -225,14 +277,14 @@ public class AccountInfoController {
             stage.setScene(new Scene(root, 550, 700));
             stage.setResizable(false);
             stage.show();
-        } catch (IOException ex){
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
     public void toUpdateForm(ActionEvent actionEvent) throws Exception {
-        Stage updateStage = new Stage();
-        Parent updateScene = FXMLLoader.load(getClass().getResource("/fxml/updateInfo.fxml"));
+        updateStage = new Stage();
+        updateScene = FXMLLoader.load(getClass().getResource("/fxml/updateInfo.fxml"));
         updateStage.initOwner(primaryStage);
         updateStage.initModality(Modality.WINDOW_MODAL);
         updateStage.setTitle("Update account information");

@@ -77,15 +77,18 @@ public class UserModel {
         return true;
     }
 
-    public boolean update(User user,String fullname, String email, String phone) {
+    public boolean update(User user,String fullname, String email, String phone, String address, String date, int gender) {
         try {
             Connection connection = DBConnection.getInstance().getConnection();
-            String sql = "UPDATE users SET fullname = ?, email = ?, phone = ? WHERE username = ?";
+            String sql = "UPDATE users SET users.fullname = ?, users.email = ?, users.phone = ?, users.address = ?, users.birthdate = ?, users.gender = ? WHERE users.id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1,fullname);
             ps.setString(2,email);
             ps.setString(3, phone);
-            ps.setString(4, user.getUserName());
+            ps.setString(4, address);
+            ps.setString(5,date);
+            ps.setInt(6,gender);
+            ps.setInt(7,user.getId());
             ps.executeUpdate();
         }
         catch (SQLException ex) {
