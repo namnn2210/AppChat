@@ -9,7 +9,7 @@ public class DBConnection {
     private final String CONNECTION_URL = "jdbc:mysql://localhost:3306/";
     private final String DATABASE = "app_chat_db";
     private final String USERNAME = "root";
-    private final String PASSWORD = "!Ngocnam2210";
+    private final String PASSWORD = "";
     private final String UTF8_URL = "?useUnicode=true&characterEncoding=utf-8&useSSL=false";
     private static DBConnection instance;
 
