@@ -4,19 +4,17 @@ public class Message {
     private int id;
     private int conversationid;
     private int senderid;
-    private int receiverid;
-    private String message;
+    private String content;
     private String createdat;
 
     public Message() {
     }
 
-    public Message(int id, int conversationid, int senderid, int receiverid, String message, String createdat) {
+    public Message(int id, int conversationid, int senderid, String content, String createdat) {
         this.id = id;
         this.conversationid = conversationid;
         this.senderid = senderid;
-        this.receiverid = receiverid;
-        this.message = message;
+        this.content = content;
         this.createdat = createdat;
     }
 
@@ -44,20 +42,12 @@ public class Message {
         this.senderid = senderid;
     }
 
-    public int getReceiverid() {
-        return receiverid;
+    public String getContent() {
+        return content;
     }
 
-    public void setReceiverid(int receiverid) {
-        this.receiverid = receiverid;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getCreatedat() {
