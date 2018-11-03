@@ -178,6 +178,7 @@ public class ClientGUIController implements Initializable {
                     if (event.getCode() == KeyCode.ENTER) {
                         try {
                             message = txtchat.getText();
+                            txtchat.setText("");
                             System.out.println(message);
                             if (message != null && !message.equals("")) {
                                 bw.write(currentUserLogin.getUserName() + " : " + message);

@@ -39,7 +39,7 @@ public class ClientThread extends Thread {
             this.bw = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
             this.br = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
