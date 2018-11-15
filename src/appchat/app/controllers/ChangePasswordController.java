@@ -3,12 +3,18 @@ package appchat.app.controllers;
 import appchat.app.entity.User;
 import appchat.app.model.UserModel;
 import appchat.app.utility.Hash;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 
@@ -28,7 +34,19 @@ public class ChangePasswordController {
     private PasswordField confirmPasswordField;
 
     private HashMap<String, String> errors = null;
+    private Stage loginStage = null;
+    private Parent root;
+    private Stage currentStage = null;
+    private Stage accountInfoStage;
+    private ClientGUIController clientGUIController = new ClientGUIController();
 
+    public Stage getAccountInfoStage() {
+        return accountInfoStage;
+    }
+
+    public void setAccountInfoStage(Stage accountInfoStage) {
+        this.accountInfoStage = accountInfoStage;
+    }
 
     public void changePassword(ActionEvent actionEvent) {
         String currentPassword = currentPasswordField.getText();
@@ -36,9 +54,23 @@ public class ChangePasswordController {
         String confirmPassword = confirmPasswordField.getText();
         errors = isValidChangePassword(currentPassword, newPassword, confirmPassword);
         if (errors.size() == 0) {
-            if ((Hash.generateSaltedSHA1(currentPassword,currentLoggedIn.getSalt())).equals(currentLoggedIn.getPassWord())) {
+            if ((Hash.generateSaltedSHA1(currentPassword, currentLoggedIn.getSalt())).equals(currentLoggedIn.getPassWord())) {
                 if (userModel.changePassword(currentLoggedIn, Hash.generateSaltedSHA1(newPassword, currentLoggedIn.getSalt()))) {
                     changedPasswordAlert();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/accountInfo.fxml"));
+                    currentStage = (Stage) change.getScene().getWindow();
+                    currentStage.setOnCloseRequest(event -> Platform.exit());
+                    currentStage.close();
+//                    try {
+//                        loginStage = (Stage) change.getScene().getWindow();
+//                        root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+//                        loginStage.setScene(new Scene(root, 550, 700));
+//                        loginStage.setResizable(false);
+//                        loginStage.show();
+//                    }
+//                    catch (IOException ex) {
+//                        ex.printStackTrace();
+//                    }
                 } else {
                     matchPasswordAlert();
                 }
@@ -78,7 +110,7 @@ public class ChangePasswordController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Changing password");
         alert.setHeaderText(null);
-        alert.setContentText("Password changed !");
+        alert.setContentText("Password changed ! You have to login again !");
         alert.showAndWait();
     }
 

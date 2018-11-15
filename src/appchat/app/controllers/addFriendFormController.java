@@ -4,6 +4,7 @@ import appchat.app.entity.Contact;
 import appchat.app.entity.User;
 import appchat.app.model.ContactModel;
 import appchat.app.model.UserModel;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

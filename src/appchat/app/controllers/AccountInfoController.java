@@ -9,6 +9,7 @@ import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -18,9 +19,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
-public class AccountInfoController {
+public class AccountInfoController implements Initializable {
     public static User currentUserLogin;
 
     private UserModel userModel = new UserModel();
@@ -170,7 +173,6 @@ public class AccountInfoController {
         primaryStage.setScene(new Scene(root, 1000, 800));
         primaryStage.setResizable(false);
         primaryStage.show();
-
     }
 
     private HashMap<String, String> isValidUpdateInfo() {
@@ -249,7 +251,7 @@ public class AccountInfoController {
         Stage secondStage = new Stage();
         Parent secondScene = FXMLLoader.load(getClass().getResource("/fxml/changePassword.fxml"));
         secondStage.initOwner(primaryStage);
-        secondStage.initModality(Modality.WINDOW_MODAL);
+        secondStage.initModality(Modality.APPLICATION_MODAL);
         secondStage.setTitle("Change password");
         secondStage.setScene(new Scene(secondScene, 600, 400));
         secondStage.setResizable(false);
@@ -275,7 +277,7 @@ public class AccountInfoController {
         updateStage = new Stage();
         updateScene = FXMLLoader.load(getClass().getResource("/fxml/updateInfo.fxml"));
         updateStage.initOwner(primaryStage);
-        updateStage.initModality(Modality.WINDOW_MODAL);
+        updateStage.initModality(Modality.APPLICATION_MODAL);
         updateStage.setTitle("Update account information");
         updateStage.setScene(new Scene(updateScene, 800, 600));
         updateStage.setResizable(false);
@@ -292,5 +294,10 @@ public class AccountInfoController {
             ex.printStackTrace();
         }
         return loginStage;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

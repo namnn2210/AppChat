@@ -8,6 +8,7 @@ public class ChatServer {
     private static ArrayList<ClientThread> listClient;
 //    private static ServerSocket serverSocket;
 
+
     public static void main(String[] args) throws IOException {
         listClient = new ArrayList<>();
         // Tạo server

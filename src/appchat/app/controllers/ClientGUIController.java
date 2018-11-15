@@ -1,8 +1,11 @@
 package appchat.app.controllers;
 
+import appchat.app.entity.Message;
 import appchat.app.entity.User;
 import appchat.app.model.ContactModel;
+import appchat.app.model.MessageModel;
 import appchat.app.model.UserModel;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -14,14 +17,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -29,6 +32,7 @@ import java.io.*;
 import java.net.Socket;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.ResourceBundle;
@@ -40,8 +44,11 @@ public class ClientGUIController implements Initializable {
     private UserModel userModel = new UserModel();
     private ContactModel contactModel = new ContactModel();
 
+    private Socket socket;
     private BufferedWriter bw;
     private BufferedReader br;
+    private ObjectInputStream ois;
+    private ObjectOutputStream oos;
     private String message;
 
     @FXML
@@ -57,7 +64,8 @@ public class ClientGUIController implements Initializable {
 
     private StringProperty mUsername;
 
-//            userModel.getListUser(contactModel.getListContact(currentUserLogin.getId()));
+    private MessageModel messageModel = new MessageModel();
+    private Message messages = null;
 
 
     @FXML
@@ -66,17 +74,12 @@ public class ClientGUIController implements Initializable {
     @FXML
     private Button addBtn;
 
+    @FXML
+    private VBox msgField;
+
     public ClientGUIController() {
         mUsername = new SimpleStringProperty();
         setUsername(currentUserLogin.getUserName());
-    }
-
-    public void sendMessage(KeyEvent keyEvent) {
-        if (keyEvent.getCode() == KeyCode.ENTER) {
-            this.message = txtchat.getText();
-            System.out.println(message);
-            txtchat.clear();
-        }
     }
 
     private void getConnect(Socket socket) {
@@ -135,7 +138,10 @@ public class ClientGUIController implements Initializable {
                     String line = br.readLine();
                     //Nếu có dòng được truyền tới thì in ra console
                     if (line != null) {
-                        System.out.println(line);
+                        Platform.runLater(() -> {
+                            Text text = new Text(line);
+                            msgField.getChildren().add(text);
+                        });
                     }
                 }
             } catch (Exception e) {
@@ -167,11 +173,11 @@ public class ClientGUIController implements Initializable {
         });
 
         try {
-            Socket socket = new Socket("localhost", 6565);
+            socket = new Socket("localhost", 6565);
             this.bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             this.br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            ChatClientReaderThread ccrt = new ChatClientReaderThread();
-            ccrt.start();
+//            this.ois = new ObjectInputStream(new ObjectInputStream(socket.getInputStream()));
+//            this.oos = new ObjectOutputStream(new ObjectOutputStream(socket.getOutputStream()));
             txtchat.setOnKeyPressed(new EventHandler<KeyEvent>() {
                 @Override
                 public void handle(KeyEvent event) {
@@ -179,18 +185,29 @@ public class ClientGUIController implements Initializable {
                         try {
                             message = txtchat.getText();
                             txtchat.setText("");
-                            System.out.println(message);
                             if (message != null && !message.equals("")) {
                                 bw.write(currentUserLogin.getUserName() + " : " + message);
                                 bw.newLine();
                                 bw.flush();
+                                Message m = new Message(message);
+                                oos.writeObject(m);
+                                Message return_m = (Message) ois.readObject();
+                                System.out.println("message: "+return_m);
                             }
-                        } catch (IOException e) {
+                            txtchat.clear();
+//                            messages = new Message();
+//                            messages.setSenderid(currentUserLogin.getId());
+//                            messages.setContent(message);
+//                            messages.setCreatedat(String.valueOf(LocalDateTime.now()));
+//                            messageModel.insert(messages);
+                        } catch (Exception e) {
                             System.err.println(e.getMessage());
                         }
                     }
                 }
             });
+            ChatClientReaderThread ccrt = new ChatClientReaderThread();
+            ccrt.start();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
