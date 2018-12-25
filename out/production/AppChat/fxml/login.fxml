@@ -42,7 +42,7 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <PasswordField fx:id="passwordField" promptText="Password" onKeyPressed="#login">
+            <PasswordField fx:id="passwordField" promptText="Password" onKeyPressed="#loginEnter">
                <font>
                   <Font size="15.0" />
                </font>

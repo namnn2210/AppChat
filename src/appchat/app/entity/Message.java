@@ -10,6 +10,23 @@ public class Message {
     public Message() {
     }
 
+    public Message(String content) {
+        this.content = content;
+    }
+
+    public Message(int senderid, String content, String createdat) {
+        this.senderid = senderid;
+        this.content = content;
+        this.createdat = createdat;
+    }
+
+    public Message(int id, int senderid, String content, String createdat) {
+        this.id = id;
+        this.senderid = senderid;
+        this.content = content;
+        this.createdat = createdat;
+    }
+
     public Message(int id, int conversationid, int senderid, String content, String createdat) {
         this.id = id;
         this.conversationid = conversationid;
