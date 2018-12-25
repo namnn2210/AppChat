@@ -17,11 +17,13 @@ import javafx.stage.Stage;
 
 import java.util.HashMap;
 
+//Controller cho login.fxml
 public class LoginController {
 
     private Stage stage;
     private Parent root;
 
+    //Lấy các ô giao diện login
     @FXML
     private Hyperlink register;
 
@@ -35,6 +37,7 @@ public class LoginController {
     private User user = null;
     private HashMap<String, String> errors = null;
 
+    //Lấy thông tin login, ấn nút enter để login
     public void login(KeyEvent keyEvent) throws Exception{
         if (keyEvent.getCode() == KeyCode.ENTER) {
             String username = usernameField.getText();
@@ -61,6 +64,7 @@ public class LoginController {
         }
     }
 
+    //Lấy thông tin login, ấn nút login để login
     public void login(ActionEvent actionEvent) throws Exception {
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -88,6 +92,7 @@ public class LoginController {
         }
     }
 
+    //Validate thông tin đăng nhập
     public HashMap<String, String> checkLogin() {
         errors = new HashMap<>();
         if (usernameField.getText().length() == 0 || usernameField.getText() == null) {
@@ -103,6 +108,7 @@ public class LoginController {
         return errors;
     }
 
+    //Báo lỗi login
     private void checkLoginAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Login Failed");
@@ -114,6 +120,7 @@ public class LoginController {
         alert.showAndWait();
     }
 
+    //Báo login thành công
     private void loginAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Logging in");
@@ -123,6 +130,7 @@ public class LoginController {
         alert.showAndWait();
     }
 
+    //Báo tài khoản không tồn tại
     private void usernameAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Login Failed");
@@ -131,6 +139,7 @@ public class LoginController {
         alert.showAndWait();
     }
 
+    //Báo sai pass
     private void passwordAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Login Failed");
@@ -139,6 +148,7 @@ public class LoginController {
         alert.showAndWait();
     }
 
+    //Ấn vào nút register
     public void handleRegisterAction(ActionEvent actionEvent) throws Exception {
 
         if (actionEvent.getSource() == register) {
@@ -150,6 +160,7 @@ public class LoginController {
         stage.show();
     }
 
+    //Sau khi login thành công -> show ra gd chat
     public void showClientGUI() throws Exception {
         stage = (Stage) register.getScene().getWindow();
         root = FXMLLoader.load(getClass().getResource("/fxml/clientGUI.fxml"));

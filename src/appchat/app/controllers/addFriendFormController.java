@@ -15,7 +15,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
+//Controller điều khiển addFriendForm.fxml
 public class addFriendFormController {
     Stage stage;
     Parent root;
@@ -24,12 +24,14 @@ public class addFriendFormController {
 
     public User currentUserLogin = ClientGUIController.currentUserLogin;
 
+    //Lấy các ô bên file FXML
     @FXML
     private Button addFriendBtn;
 
     @FXML
     private TextField username;
 
+    //Hàm add friend
     public void addHandle(ActionEvent actionEvent) throws Exception{
         String username = this.username.getText();
         User friend = userModel.select(username);
@@ -50,6 +52,7 @@ public class addFriendFormController {
         stage.show();
     }
 
+    // Báo đã là bạn
     public void alertExist(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Add Friend Failed");
@@ -58,6 +61,7 @@ public class addFriendFormController {
         alert.showAndWait();
     }
 
+    // Báo không tìm thấy user
     public void alertUnExistUsername(String name){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Add Friend Failed");
@@ -66,6 +70,7 @@ public class addFriendFormController {
         alert.showAndWait();
     }
 
+    //Báo add thành công
     public void alertSuccess(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Add Friend Failed");

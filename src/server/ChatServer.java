@@ -20,6 +20,7 @@ public class ChatServer {
         }
     }
 
+    //Lấy tin nhắn người dùng trả về server
     public static void publicMessage(String message) {
         try {
             for (ClientThread clientThread : listClient) {

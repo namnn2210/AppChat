@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.HashMap;
 
+//Controllẻ cho accountInfo.fxml
 public class AccountInfoController {
     public static User currentUserLogin;
 
@@ -41,6 +42,7 @@ public class AccountInfoController {
     private StringProperty dob;
     private StringProperty phone;
 
+    //Các ô, button bên file FXML
     @FXML
     private TextField updateName;
     @FXML
@@ -63,6 +65,7 @@ public class AccountInfoController {
     private ImageView backToChat;
     @FXML
     private Button logout;
+
 
 
     public AccountInfoController() {
@@ -163,6 +166,8 @@ public class AccountInfoController {
         this.gender.set(gender);
     }
 
+
+    //Nút ấn quay lại giao diện chat từ giao diện thông tin người dùng
     public void backToChat(MouseEvent mouseEvent) throws Exception {
         primaryStage = (Stage) backToChat.getScene().getWindow();
         root = FXMLLoader.load(getClass().getResource("/fxml/clientGUI.fxml"));
@@ -173,6 +178,7 @@ public class AccountInfoController {
 
     }
 
+    //Validate thay đổi thông tin người dùng
     private HashMap<String, String> isValidUpdateInfo() {
         errors = new HashMap<>();
         if (updateName.getText().length() == 0 || updateName.getText().equals("")) {
@@ -192,6 +198,7 @@ public class AccountInfoController {
         return errors;
     }
 
+    //Hàm thay đổi thông tin người dùng
     public void updateInfo(ActionEvent actionEvent) {
         String fullname = updateName.getText();
         String email = updateEmail.getText();
@@ -218,6 +225,8 @@ public class AccountInfoController {
         }
     }
 
+
+    //Cửa sổ báo update fail -> in ra các lỗi
     private void errorsAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Update information failed");
@@ -229,6 +238,7 @@ public class AccountInfoController {
         alert.showAndWait();
     }
 
+    //Cửa sổ báo update thành công
     private void updatedAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Updating ");
@@ -237,6 +247,7 @@ public class AccountInfoController {
         alert.showAndWait();
     }
 
+    //Cửa sổ báo update fail
     private void updateFailedAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Updating ");
@@ -245,6 +256,7 @@ public class AccountInfoController {
         alert.showAndWait();
     }
 
+    //Bật cửa sổ thay đổi mật khẩu
     public void changePasswordBtn(ActionEvent actionEvent) throws Exception {
         Stage secondStage = new Stage();
         Parent secondScene = FXMLLoader.load(getClass().getResource("/fxml/changePassword.fxml"));
@@ -256,6 +268,7 @@ public class AccountInfoController {
         secondStage.show();
     }
 
+    //Cửa sổ báo logout
     private void logoutAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Logging out ");
@@ -264,6 +277,7 @@ public class AccountInfoController {
         alert.showAndWait();
     }
 
+    //Logout
     public void logout(ActionEvent actionEvent) {
         currentUserLogin = null;
         logoutAlert();
@@ -271,6 +285,7 @@ public class AccountInfoController {
         loginStage.show();
     }
 
+    //Bật cửa sổ update thông tin người dùng
     public void toUpdateForm(ActionEvent actionEvent) throws Exception {
         updateStage = new Stage();
         updateScene = FXMLLoader.load(getClass().getResource("/fxml/updateInfo.fxml"));
@@ -282,6 +297,7 @@ public class AccountInfoController {
         updateStage.show();
     }
 
+    //Cửa sổ login
     public Stage loginStage() {
         try {
             loginStage = (Stage) logout.getScene().getWindow();

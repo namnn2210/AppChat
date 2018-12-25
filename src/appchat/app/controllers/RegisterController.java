@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.HashMap;
 
-
+//Controller cho register.fxml
 public class RegisterController {
 
     private UserModel userModel = new UserModel();
@@ -22,6 +22,7 @@ public class RegisterController {
     Stage stage;
     Parent root;
 
+    //Lấy các ô bên fxml
     @FXML
     private TextField userNameField;
     @FXML
@@ -50,6 +51,7 @@ public class RegisterController {
     private User user = null;
     private HashMap<String, String> errors = null;
 
+    //Hàm đăng kí
     public void register(ActionEvent actionEvent) {
         String username = userNameField.getText();
         String password = passwordField.getText();
@@ -110,6 +112,7 @@ public class RegisterController {
 
     }
 
+    //Validate thông tin
     public HashMap<String, String> isValid() {
         HashMap<String, String> errors = new HashMap<>();
         if (userNameField.getText().length() == 0 || userNameField.getText() == null) {
@@ -139,6 +142,7 @@ public class RegisterController {
     }
 
 
+    //Báo lỗi đăng kí
     private void signUpFailedAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Signup Failed");
@@ -148,6 +152,7 @@ public class RegisterController {
         alert.showAndWait();
     }
 
+    //Báo lỗi đăng kí và in ra lỗi
     private void errorsAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Signup Failed");
@@ -159,6 +164,7 @@ public class RegisterController {
         alert.showAndWait();
     }
 
+    //Báo lỗi đăng kí, đã có user
     private void checkExistUserAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Username existed");
@@ -167,6 +173,7 @@ public class RegisterController {
         alert.showAndWait();
     }
 
+    //Báo lỗi email đã có
     private void checkExistEmailAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Email existed");
@@ -175,6 +182,7 @@ public class RegisterController {
         alert.showAndWait();
     }
 
+    // Báo password không trùng
     private void checkPasswordAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Password");
@@ -183,6 +191,7 @@ public class RegisterController {
         alert.showAndWait();
     }
 
+    //Báo đăng kí thành công
     private void signUpSuccessfulAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Signup Successfully");
@@ -193,7 +202,7 @@ public class RegisterController {
         alert.showAndWait();
     }
 
-
+    //Ấn vào nut login
     public void handleLoginAction(ActionEvent actionEvent) throws Exception {
         if (actionEvent.getSource() == login) {
             stage = (Stage) register.getScene().getWindow();

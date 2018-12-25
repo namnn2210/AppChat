@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
+//Controller cho giao diện chat, clientGUI.fxml
 public class ClientGUIController implements Initializable {
 
     private Stage stage;
@@ -44,6 +45,7 @@ public class ClientGUIController implements Initializable {
     private BufferedReader br;
     private String message;
 
+    // Lấy các ô bên file FXML
     @FXML
     private ImageView accountInfo;
 
@@ -57,20 +59,19 @@ public class ClientGUIController implements Initializable {
 
     private StringProperty mUsername;
 
-//            userModel.getListUser(contactModel.getListContact(currentUserLogin.getId()));
-
-
     @FXML
     ListView<User> listFriend;
 
     @FXML
     private Button addBtn;
 
+
     public ClientGUIController() {
         mUsername = new SimpleStringProperty();
         setUsername(currentUserLogin.getUserName());
     }
 
+    //Gõ tin nhắn
     public void sendMessage(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             this.message = txtchat.getText();
@@ -95,6 +96,7 @@ public class ClientGUIController implements Initializable {
         mUsername.set(username);
     }
 
+    //Ấn vào icon để hiện account info
     public void handleAccountInfo(MouseEvent mouseEvent) throws Exception {
         if (mouseEvent.getSource() == accountInfo) {
             stage = (Stage) accountInfo.getScene().getWindow();
@@ -106,6 +108,7 @@ public class ClientGUIController implements Initializable {
         }
     }
 
+    //Ấn nút add friend
     public void addFriend(MouseEvent mouseEvent) throws Exception {
         if (mouseEvent.getSource() == addFriendBtn) {
             Stage addFriendStage = new Stage();
@@ -125,6 +128,7 @@ public class ClientGUIController implements Initializable {
 //        System.out.println(user);
     }
 
+    //client chat hiện ra console server
     class ChatClientReaderThread extends Thread {
 
         @Override

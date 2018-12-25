@@ -11,7 +11,7 @@ import javafx.scene.control.PasswordField;
 
 import java.util.HashMap;
 
-
+//Controller cho changePassword.fxml
 public class ChangePasswordController {
 
     public static User currentLoggedIn = AccountInfoController.currentUserLogin;
@@ -20,6 +20,7 @@ public class ChangePasswordController {
 
     private UserModel userModel = new UserModel();
 
+    //Lấy các ô bên FXML
     @FXML
     private PasswordField currentPasswordField;
     @FXML
@@ -30,6 +31,7 @@ public class ChangePasswordController {
     private HashMap<String, String> errors = null;
 
 
+    //Hàm đổi mật khẩu
     public void changePassword(ActionEvent actionEvent) {
         String currentPassword = currentPasswordField.getText();
         String newPassword = newPasswordField.getText();
@@ -48,6 +50,7 @@ public class ChangePasswordController {
         }
     }
 
+    // Validate thông tin
     private HashMap<String, String> isValidChangePassword(String currentPass, String newPass, String confirmPass) {
         errors = new HashMap<>();
         if (currentPass.length() == 0 || currentPass.equals("")) {
@@ -63,6 +66,7 @@ public class ChangePasswordController {
         return errors;
     }
 
+    //Báo lỗi
     private void errorsAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Change password failed");
@@ -74,6 +78,7 @@ public class ChangePasswordController {
         alert.showAndWait();
     }
 
+    //Báo lỗi đổi password thành công
     private void changedPasswordAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Changing password");
@@ -81,6 +86,8 @@ public class ChangePasswordController {
         alert.setContentText("Password changed !");
         alert.showAndWait();
     }
+
+    //Báo lỗi pass hiện tại sai
 
     private void matchPasswordAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
