@@ -7,11 +7,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.TextFlow?>
 
-<?import javafx.scene.layout.VBox?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" stylesheets="/css/clientGUI.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appchat.app.controllers.ClientGUIController">
    <children>
       <Pane fx:id="userInfo" prefHeight="116.0" prefWidth="250.0" styleClass="userInfo">
@@ -34,7 +33,7 @@
       </Pane>
       <Pane layoutX="250.0" prefHeight="800.0" prefWidth="750.0">
          <children>
-            <VBox fx:id="msgField" layoutY="177.0" prefHeight="455.0" prefWidth="750.0" />
+            <VBox fx:id="msgField" layoutY="175.0" prefHeight="491.0" prefWidth="750.0" />
          </children></Pane>
       <Pane layoutX="251.0" layoutY="660.0" prefHeight="141.0" prefWidth="750.0">
          <children>

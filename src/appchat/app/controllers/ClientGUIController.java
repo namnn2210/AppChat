@@ -23,10 +23,12 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import server.ChatServer;
 
 import java.io.*;
 import java.net.Socket;
@@ -136,11 +138,15 @@ public class ClientGUIController implements Initializable {
                 while (true) {
                     //Đọc dòng từ server
                     String line = br.readLine();
+                    String name[] = line.split(" ");
                     //Nếu có dòng được truyền tới thì in ra console
                     if (line != null) {
                         Platform.runLater(() -> {
-                            Text text = new Text(line);
-                            msgField.getChildren().add(text);
+                            if(!(currentUserLogin.getUserName().equals(name[0]))){
+                                Text text = new Text(line);
+                                msgField.getChildren().add(text);
+                            }
+
                         });
                     }
                 }
@@ -189,10 +195,9 @@ public class ClientGUIController implements Initializable {
                                 bw.write(currentUserLogin.getUserName() + " : " + message);
                                 bw.newLine();
                                 bw.flush();
-                                Message m = new Message(message);
-                                oos.writeObject(m);
-                                Message return_m = (Message) ois.readObject();
-                                System.out.println("message: "+return_m);
+                                Text text = new Text(currentUserLogin.getUserName() + " : "+message);
+                                text.setFill(Color.RED);
+                                msgField.getChildren().add(text);
                             }
                             txtchat.clear();
 //                            messages = new Message();

@@ -52,7 +52,7 @@ public class ClientThread extends Thread {
                     break;
                 }
                 System.out.println(line);
-//                ChatServer.publicMessage(line);
+                ChatServer.publicMessage(line);
             } catch (IOException e) {
                 System.out.println(socket.getInetAddress().getHostAddress() + " đã thoát.");
                 break;
