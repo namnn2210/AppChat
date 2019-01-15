@@ -36,21 +36,26 @@ public class ClientThread extends Thread {
         System.out.println(socket.getInetAddress().getHostAddress() + " đã kết nối.");
         this.socket = socket;
         try {
+            //Ghi để gửi tin từ client lên server
             this.bw = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
+            //Đọc để nhận tin từ server gửi về client
             this.br = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
 
+    //hàm run() để chạy luồng song song nhiều client
     @Override
     public void run() {
         while (true) {
             try {
+                //line là dòng mới đọc được từ server gửi về
                 String line = this.br.readLine();
                 if (null == line) {
                     break;
                 }
+                //nếu có dữ liệu truyền về, ghi dữ liệu ra view tại server
                 System.out.println(line);
                 ChatServer.publicMessage(line);
             } catch (IOException e) {

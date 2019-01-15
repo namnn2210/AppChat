@@ -138,10 +138,15 @@ public class ClientGUIController implements Initializable {
                 while (true) {
                     //Đọc dòng từ server
                     String line = br.readLine();
+                    //Tách chuỗi qua kí tự dấu cách (" ") để lấy được tên người gửi message lên server
                     String name[] = line.split(" ");
                     //Nếu có dòng được truyền tới thì in ra console
                     if (line != null) {
                         Platform.runLater(() -> {
+                            /* Nếu dòng nhận được từ server đọc được ( khác null )
+                            Nếu dòng nhận được không phải từ chính client đang chạy, in ra màn hình với màu mặc định
+                            là màu đen
+                            */
                             if(!(currentUserLogin.getUserName().equals(name[0]))){
                                 Text text = new Text(line);
                                 msgField.getChildren().add(text);
@@ -159,6 +164,7 @@ public class ClientGUIController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<User> listFriendforView = listFriend.getItems();
+        // Lấy dữ liệu contact (list friend )
         for (User user : userModel.getListUser(contactModel.getListContact(currentUserLogin.getId()))) {
             listFriendforView.add(user);
         }
@@ -178,8 +184,11 @@ public class ClientGUIController implements Initializable {
             }
         });
 
+        //Khi đăng nhập thành công, tạo 1 socket kết nối với server Chat theo cổng 6565 tại máy local
         try {
             socket = new Socket("localhost", 6565);
+
+            //tạo BufferWriter và Reader để ghi và đọc dữ liệu từ client gửi đi và server gửi về
             this.bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             this.br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 //            this.ois = new ObjectInputStream(new ObjectInputStream(socket.getInputStream()));
@@ -189,12 +198,18 @@ public class ClientGUIController implements Initializable {
                 public void handle(KeyEvent event) {
                     if (event.getCode() == KeyCode.ENTER) {
                         try {
+                            // lấy dữ liệu từ textfield chat
                             message = txtchat.getText();
                             txtchat.setText("");
+                            //nếu có dòng được nhập và Enter
                             if (message != null && !message.equals("")) {
+                                //ghi 1 dòng chữ như dưới
                                 bw.write(currentUserLogin.getUserName() + " : " + message);
+                                //tạo dòng mới
                                 bw.newLine();
+                                //đẩy lên server
                                 bw.flush();
+                                // set màu cho dòng vừa nhập hiện lên màn hình là màu đỏ
                                 Text text = new Text(currentUserLogin.getUserName() + " : "+message);
                                 text.setFill(Color.RED);
                                 msgField.getChildren().add(text);
@@ -211,6 +226,7 @@ public class ClientGUIController implements Initializable {
                     }
                 }
             });
+            // Luồng đọc dữ liệu từ server
             ChatClientReaderThread ccrt = new ChatClientReaderThread();
             ccrt.start();
         } catch (IOException e) {
