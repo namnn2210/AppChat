@@ -50,6 +50,67 @@ public class RegisterController {
     private User user = null;
     private HashMap<String, String> errors = null;
 
+    /* Hàm đăng kí
+        1. String username = userNameField.getText();
+        String password = passwordField.getText();
+        String salt = Hash.randomString(7);
+        String fullName = fullNameField.getText();
+        String birthDate = ((TextField) date.getEditor()).getText();
+        int gender;
+        if (male.isSelected()) {
+            gender = 1;
+        } else if (female.isSelected()) {
+            gender = 2;
+        } else {
+            gender = 0;
+        }
+        String address = addressField.getText();
+        String email = emailField.getText();
+        String phone = phoneField.getText();
+        -> Nhận các giá trị từ ô đăng kí
+        2. user = new User(username, Hash.generateSaltedSHA1(password, salt), salt, fullName, birthDate, gender, address, email, phone) -> tạo đối tượng user với password mã hoá
+        3. errors = isValid();
+        if (errors.size() == 0) {
+            if (passwordField.getText().equals(confirmPasswordField.getText())) {
+                if (userModel.checkExistEmail(user.getEmail())) {
+                    if(userModel.checkExistUser(user.getUserName())) {
+                        if (userModel.insert(user)) {
+                            signUpSuccessfulAlert();
+                            try {
+                                if (actionEvent.getSource() == register) {
+                                    stage = (Stage) register.getScene().getWindow();
+                                    root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+                                }
+                                stage.setScene(new Scene(root, 550, 700));
+                                stage.setResizable(false);
+                                stage.show();
+                            } catch (IOException ex){
+                                ex.printStackTrace();
+                            }
+                        }
+                        else {
+                            signUpFailedAlert();
+                        }
+                    }
+                    else {
+                        checkExistUserAlert();
+                    }
+                }
+                else {
+                    checkExistEmailAlert();
+                }
+            }
+            else {
+                checkPasswordAlert();
+            }
+        } else {
+            errorsAlert();
+        }
+        -> hàm isValid : check các lỗi khi nhập dữ liệu
+        -> check các lỗi : lỗi trùng password, lỗi đã có tên tài khoản với DB -> in ra alert
+        -> nếu không có lỗi thì gọi userModel.insert(user) để đưa đối tượng user vào DB và báo ra đăng kí thành công và chuyển sang màn hình login
+
+     */
     public void register(ActionEvent actionEvent) {
         String username = userNameField.getText();
         String password = passwordField.getText();
@@ -110,6 +171,7 @@ public class RegisterController {
 
     }
 
+    //Hàm đưa ra các lỗi nếu có
     public HashMap<String, String> isValid() {
         HashMap<String, String> errors = new HashMap<>();
         if (userNameField.getText().length() == 0 || userNameField.getText() == null) {
@@ -138,7 +200,7 @@ public class RegisterController {
         return errors;
     }
 
-
+    //Các hàm alert là các hàm in ra thông báo
     private void signUpFailedAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Signup Failed");
@@ -194,6 +256,7 @@ public class RegisterController {
     }
 
 
+    // Hàm chuyển sang màn hình đăng nhập nếu đã có tài khoản
     public void handleLoginAction(ActionEvent actionEvent) throws Exception {
         if (actionEvent.getSource() == login) {
             stage = (Stage) register.getScene().getWindow();
