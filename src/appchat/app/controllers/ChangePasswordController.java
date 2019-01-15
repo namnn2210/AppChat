@@ -48,6 +48,31 @@ public class ChangePasswordController {
         this.accountInfoStage = accountInfoStage;
     }
 
+    /*
+        Hàm thay đổi mật khẩu sau khi ấn submit
+        1. String currentPassword = currentPasswordField.getText();
+        String newPassword = newPasswordField.getText();
+        String confirmPassword = confirmPasswordField.getText();
+        -> Nhận các giá trị đã nhập
+        2. errors = isValidChangePassword(currentPassword, newPassword, confirmPassword);
+        -> Validate các giá trị đã nhập
+        3.  if (errors.size() == 0) {
+            if ((Hash.generateSaltedSHA1(currentPassword, currentLoggedIn.getSalt())).equals(currentLoggedIn.getPassWord())) {
+                if (userModel.changePassword(currentLoggedIn, Hash.generateSaltedSHA1(newPassword, currentLoggedIn.getSalt()))) {
+                    changedPasswordAlert();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/accountInfo.fxml"));
+                    currentStage = (Stage) change.getScene().getWindow();
+                    currentStage.setOnCloseRequest(event -> Platform.exit());
+                    currentStage.close();
+                } else {
+                    matchPasswordAlert();
+                }
+            }
+        } else {
+            errorsAlert();
+        }
+        -> Nếu có lỗi khi nhập sẽ alert lỗi, nếu ok sẽ check với DB xem mật khẩu hiện tại có đúng vs trong DB không, nếu có thì báo thành công và quay về màn hình thông tin tk, nếu không thì báo lỗi
+     */
     public void changePassword(ActionEvent actionEvent) {
         String currentPassword = currentPasswordField.getText();
         String newPassword = newPasswordField.getText();
@@ -61,16 +86,6 @@ public class ChangePasswordController {
                     currentStage = (Stage) change.getScene().getWindow();
                     currentStage.setOnCloseRequest(event -> Platform.exit());
                     currentStage.close();
-//                    try {
-//                        loginStage = (Stage) change.getScene().getWindow();
-//                        root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
-//                        loginStage.setScene(new Scene(root, 550, 700));
-//                        loginStage.setResizable(false);
-//                        loginStage.show();
-//                    }
-//                    catch (IOException ex) {
-//                        ex.printStackTrace();
-//                    }
                 } else {
                     matchPasswordAlert();
                 }
@@ -80,6 +95,7 @@ public class ChangePasswordController {
         }
     }
 
+    //Hàm đưa ra các lỗi nếu có
     private HashMap<String, String> isValidChangePassword(String currentPass, String newPass, String confirmPass) {
         errors = new HashMap<>();
         if (currentPass.length() == 0 || currentPass.equals("")) {
@@ -95,6 +111,7 @@ public class ChangePasswordController {
         return errors;
     }
 
+    //Các hàm alert là các hàm in ra thông báo
     private void errorsAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Change password failed");

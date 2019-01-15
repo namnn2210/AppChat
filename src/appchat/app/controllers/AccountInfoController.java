@@ -67,7 +67,7 @@ public class AccountInfoController implements Initializable {
     @FXML
     private Button logout;
 
-
+    // Khi màn hình thông tin tài khoản được bật lên, đối tượng user đc tạo ra và lấy các thông tin theo thông tin của người user đang đăng nhập
     public AccountInfoController() {
         username = new SimpleStringProperty(currentUserLogin.getUserName());
         password = new SimpleStringProperty(currentUserLogin.getPassWord());
@@ -166,6 +166,7 @@ public class AccountInfoController implements Initializable {
         this.gender.set(gender);
     }
 
+    //Hàm ấn nút quay lại màn hình chat
     public void backToChat(MouseEvent mouseEvent) throws Exception {
         primaryStage = (Stage) backToChat.getScene().getWindow();
         root = FXMLLoader.load(getClass().getResource("/fxml/clientGUI.fxml"));
@@ -175,6 +176,7 @@ public class AccountInfoController implements Initializable {
         primaryStage.show();
     }
 
+    //Hàm đưa ra các lỗi nếu có
     private HashMap<String, String> isValidUpdateInfo() {
         errors = new HashMap<>();
         if (updateName.getText().length() == 0 || updateName.getText().equals("")) {
@@ -194,6 +196,34 @@ public class AccountInfoController implements Initializable {
         return errors;
     }
 
+    /*
+        Hàm update thông tin tài khoản
+        1. String fullname = updateName.getText();
+        String email = updateEmail.getText();
+        String phone = updatePhone.getText();
+        String address = updateAddress.getText();
+        String date = updateDate.getEditor().getText();
+        int gender;
+        if (updateMaleGender.isSelected()) {
+            gender = 1;
+        } else if (updateFemaleGender.isSelected()) {
+            gender = 2;
+        } else {
+            gender = 0;
+        }
+        -> Lấy các thông tin sau khi chỉnh sửa
+        2. errors = isValidUpdateInfo() -> gọi hàm validate các thông tin chỉnh sửa
+        3. if (errors.size() == 0) {
+            if (userModel.update(currentUserLogin, fullname, email, phone, address, date, gender)) {
+                updatedAlert();
+            } else {
+                updateFailedAlert();
+            }
+        } else {
+            errorsAlert();
+        }
+        -> Nếu không có lỗi thì gọi hàm update để thay đổi thông tin và đưa ra thông báo thành công, ko thì sẽ báo sai
+     */
     public void updateInfo(ActionEvent actionEvent) {
         String fullname = updateName.getText();
         String email = updateEmail.getText();
@@ -220,6 +250,7 @@ public class AccountInfoController implements Initializable {
         }
     }
 
+    // Các hàm alert đưa ra thông báo
     private void errorsAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Update information failed");
@@ -247,6 +278,7 @@ public class AccountInfoController implements Initializable {
         alert.showAndWait();
     }
 
+    // Hàm hiện lên cửa sổ thay đổi password
     public void changePasswordBtn(ActionEvent actionEvent) throws Exception {
         Stage secondStage = new Stage();
         Parent secondScene = FXMLLoader.load(getClass().getResource("/fxml/changePassword.fxml"));
@@ -266,6 +298,7 @@ public class AccountInfoController implements Initializable {
         alert.showAndWait();
     }
 
+    // Hàm logout
     public void logout(ActionEvent actionEvent) {
         currentUserLogin = null;
         logoutAlert();
@@ -273,6 +306,7 @@ public class AccountInfoController implements Initializable {
         loginStage.show();
     }
 
+    //Hàm hiện ra cửa sổ thay đổi thông tin tk
     public void toUpdateForm(ActionEvent actionEvent) throws Exception {
         updateStage = new Stage();
         updateScene = FXMLLoader.load(getClass().getResource("/fxml/updateInfo.fxml"));
@@ -284,6 +318,7 @@ public class AccountInfoController implements Initializable {
         updateStage.show();
     }
 
+    // Hàm hiện ra cửa sổ login sau khi logout
     public Stage loginStage() {
         try {
             loginStage = (Stage) logout.getScene().getWindow();

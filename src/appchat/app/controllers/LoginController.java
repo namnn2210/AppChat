@@ -39,6 +39,32 @@ public class LoginController {
     private User user = null;
     private HashMap<String, String> errors = null;
 
+    /* Hàm login nhận nút enter sau khi nhập username + password
+        1. keyEvent.getCode() == KeyCode.ENTER -> nhận nút enter
+        2. String username = usernameField.getText();
+            String password = passwordField.getText(); -> nhận giá trị từ 2 ô nhập
+        3.
+        errors = checkLogin();
+        if (errors.size() > 0) {
+                checkLoginAlert();
+            } else {
+                user = userModel.select(username);
+                if (user == null) {
+                    usernameAlert();
+                } else {
+                    if (!(user.getPassWord().equals(Hash.generateSaltedSHA1(password, user.getSalt())))) {
+                        passwordAlert();
+                    } else {
+                        loginAlert();
+                        ClientGUIController.currentUserLogin = user;
+                        AccountInfoController.currentUserLogin = user;
+                        showClientGUI();
+                    }
+                }
+            }
+          -> gọi hàm checklogin() xem có lỗi đăng nhập gì ko nếu có gọi hàm checkLoginAlert() để báo có lỗi, không thì gọi user = userModel.select(username) để lấy từ db ra,
+          thành công thì hiện hàm loginAlert(), và showClientGUI() để hiện ra màn hình chat
+     */
     public void loginEnter(KeyEvent keyEvent) throws Exception{
         if (keyEvent.getCode() == KeyCode.ENTER) {
             String username = usernameField.getText();
@@ -65,6 +91,32 @@ public class LoginController {
         }
     }
 
+    /* Hàm login nhận nút login sau khi nhập username + password
+        1. actionEvent.getSource() == login -> nhận nút click login
+        2. String username = usernameField.getText();
+            String password = passwordField.getText(); -> nhận giá trị từ 2 ô nhập
+        3.
+        errors = checkLogin();
+        if (errors.size() > 0) {
+                checkLoginAlert();
+            } else {
+                user = userModel.select(username);
+                if (user == null) {
+                    usernameAlert();
+                } else {
+                    if (!(user.getPassWord().equals(Hash.generateSaltedSHA1(password, user.getSalt())))) {
+                        passwordAlert();
+                    } else {
+                        loginAlert();
+                        ClientGUIController.currentUserLogin = user;
+                        AccountInfoController.currentUserLogin = user;
+                        showClientGUI();
+                    }
+                }
+            }
+          -> gọi hàm checklogin() xem có lỗi đăng nhập gì ko nếu có gọi hàm checkLoginAlert() để báo có lỗi, không thì gọi user = userModel.select(username) để lấy từ db ra,
+          thành công thì hiện hàm loginAlert(), và showClientGUI() để hiện ra màn hình chat
+     */
     public void login(ActionEvent actionEvent) throws Exception {
         if(actionEvent.getSource() == login) {
             String username = usernameField.getText();
@@ -96,6 +148,7 @@ public class LoginController {
 
 
 
+    //Hàm đưa ra các lỗi nếu có
     public HashMap<String, String> checkLogin() {
         errors = new HashMap<>();
         if (usernameField.getText().length() == 0 || usernameField.getText() == null) {
@@ -111,6 +164,7 @@ public class LoginController {
         return errors;
     }
 
+    //Các hàm alert là các hàm in ra thông báo
     private void checkLoginAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Login Failed");
@@ -147,6 +201,7 @@ public class LoginController {
         alert.showAndWait();
     }
 
+    // Hàm chuyển sang màn hình đăng kí nếu chưa có tài khoản
     public void handleRegisterAction(ActionEvent actionEvent) throws Exception {
 
         if (actionEvent.getSource() == register) {
@@ -158,6 +213,7 @@ public class LoginController {
         stage.show();
     }
 
+    // Hàm chuyển sang màn hình chat
     public void showClientGUI() throws Exception {
         stage = (Stage) register.getScene().getWindow();
         root = FXMLLoader.load(getClass().getResource("/fxml/clientGUI.fxml"));

@@ -31,6 +31,19 @@ public class addFriendFormController {
     @FXML
     private TextField username;
 
+    /*
+        Hàm xử lý add friend
+        1.  String username = this.username.getText() -> Nhận giá trị
+        2. if (friend != null){
+            Contact newfriend = new Contact(currentUserLogin.getId(), friend.getId());
+            if(!contactModel.checkExistContact(newfriend)){
+                contactModel.insert(newfriend);
+                alertSuccess();
+            }
+            else alertExist();
+        }
+        -> check với DB nếu có người với tên đã nhập thì sẽ alert lỗi, không thì đưa vào list friend và báo add thành công
+     */
     public void addHandle(ActionEvent actionEvent) throws Exception{
         String username = this.username.getText();
         User friend = userModel.select(username);
@@ -51,6 +64,7 @@ public class addFriendFormController {
         stage.show();
     }
 
+    //Các hàm alert là các hàm thông báo
     public void alertExist(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Add Friend Failed");
